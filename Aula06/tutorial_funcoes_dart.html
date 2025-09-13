@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tutorial de Funções em Dart</title>
+<style>
+  :root{
+    --bg:#0f172a;        /* slate-900 */
+    --panel:#111827;     /* gray-900 */
+    --text:#e5e7eb;      /* gray-200 */
+    --muted:#94a3b8;     /* slate-400 */
+    --accent:#22d3ee;    /* cyan-400 */
+    --accent2:#a78bfa;   /* violet-400 */
+    --ok:#34d399;        /* emerald-400 */
+    --warn:#fbbf24;      /* amber-400 */
+    --err:#fb7185;       /* rose-400 */
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    background:linear-gradient(120deg, #0b1220 0%, #0f172a 50%, #0b1220 100%);
+    color:var(--text);
+    line-height:1.65;
+  }
+  header{
+    padding:48px 20px 24px;
+    text-align:center;
+  }
+  h1{
+    font-size: clamp(28px, 4.5vw, 44px);
+    margin:0 0 8px;
+    letter-spacing:.3px;
+  }
+  h1 span{ color: var(--accent); }
+  p.subtitle{
+    margin:0 auto;
+    max-width: 900px;
+    color: var(--muted);
+    font-size: clamp(14px, 2vw, 18px);
+  }
+  main{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px 20px 64px;
+  }
+  section{
+    background: rgba(17,24,39,.6);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 16px;
+    padding: 18px;
+    margin: 18px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  }
+  h2{
+    margin: 8px 0 12px;
+    font-size: clamp(20px, 3vw, 26px);
+    color: var(--accent2);
+  }
+  h3{ margin: 18px 0 8px; color: var(--accent); }
+  ul{ padding-left: 20px; }
+  .tip{
+    border-left: 4px solid var(--ok);
+    padding: 10px 12px;
+    background: rgba(52,211,153,.08);
+    border-radius: 10px;
+    color: #d1fae5;
+    margin: 12px 0;
+  }
+  .warn{
+    border-left: 4px solid var(--warn);
+    padding: 10px 12px;
+    background: rgba(251,191,36,.08);
+    border-radius: 10px;
+    color: #fef3c7;
+    margin: 12px 0;
+  }
+  /* Lightweight code highlighting */
+  pre{
+    overflow:auto;
+    padding:14px;
+    border-radius: 12px;
+    background: #0a0f1c;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  code{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 13px;
+    color: #e6edf3;
+    white-space: pre;
+  }
+  /* manual token styling (simple) */
+  .kw{ color: #7dd3fc; }     /* keywords */
+  .ty{ color: #fca5a5; }     /* types */
+  .fn{ color: #a78bfa; }     /* function names */
+  .st{ color: #86efac; }     /* strings */
+  .nu{ color: #fbbf24; }     /* numbers */
+  .cm{ color: #94a3b8; }     /* comments */
+</style>
+</head>
+<body>
+  <header>
+    <h1>Funções em <span>Dart</span> — do básico ao avançado</h1>
+    <p class="subtitle">Guia prático e direto: parâmetros posicionais e nomeados, valores padrão, lambdas, closures, funções de ordem superior, async/await, typedefs, tear-offs, e mais.</p>
+  </header>
+  <main>
+
+    <section id="conceitos">
+      <h2>1) Conceitos essenciais</h2>
+      <ul>
+        <li><b>Função</b>: bloco reutilizável que recebe entradas (parâmetros) e pode retornar um valor.</li>
+        <li><b>Assinatura</b>: nome da função, parâmetros e tipo de retorno.</li>
+        <li><b>Top-level</b>, <b>métodos</b> (dentro de classes) e <b>funções anônimas</b> (lambdas/closures).</li>
+      </ul>
+      <pre><code>
+<span class="cm">// Declaração simples</span>
+<span class="ty">int</span> <span class="fn">soma</span>(<span class="ty">int</span> a, <span class="ty">int</span> b) {
+  <span class="kw">return</span> a + b;
+}
+
+<span class="cm">// Arrow function (corpo de expressão)</span>
+<span class="ty">double</span> <span class="fn">areaCirculo</span>(<span class="ty">double</span> r) =&gt; 3.14159 * r * r;
+      </code></pre>
+    </section>
+
+    <section id="parametros">
+      <h2>2) Parâmetros posicionais, nomeados e padrões</h2>
+      <pre><code>
+<span class="cm">// Posicionais (ordem importa)</span>
+<span class="ty">String</span> <span class="fn">saudacao</span>(<span class="ty">String</span> nome, <span class="ty">int</span> dia) {
+  <span class="kw">return</span> <span class="st">"Olá, $nome! Hoje é dia $dia."</span>;
+}
+
+<span class="cm">// Nomeados (ordem não importa; podem ser opcionais)</span>
+<span class="ty">String</span> <span class="fn">formatar</span>({<span class="ty">String</span> separador = <span class="st">"-"</span>, <span class="ty">bool</span> maiusculo = <span class="kw">false</span>}) {
+  <span class="ty">String</span> txt = <span class="st">"a|b|c"</span>.replaceAll(<span class="st">"|"</span>, separador);
+  <span class="kw">return</span> maiusculo ? txt.toUpperCase() : txt;
+}
+
+<span class="cm">// Nomeados obrigatórios</span>
+<span class="ty">void</span> <span class="fn">enviarEmail</span>({<span class="kw">required</span> <span class="ty">String</span> para, <span class="ty">String</span> assunto = <span class="st">"Sem assunto"</span>}) {
+  print(<span class="st">"Para: $para | Assunto: $assunto"</span>);
+}
+      </code></pre>
+      <div class="tip"><b>Dica:</b> Prefira parâmetros nomeados para funções com muitos opcionais; isso melhora a legibilidade.</div>
+    </section>
+
+    <section id="anonimas-closures">
+      <h2>3) Funções anônimas e closures</h2>
+      <pre><code>
+<span class="cm">// Função anônima atribuída a variável</span>
+<span class="ty">var</span> dobro = (<span class="ty">int</span> x) =&gt; x * 2;
+print(dobro(21)); <span class="cm">// 42</span>
+
+<span class="cm">// Closure: captura variáveis do escopo</span>
+<span class="ty">Function</span> <span class="fn">contador</span>() {
+  <span class="ty">int</span> c = 0;
+  <span class="kw">return</span> () {
+    c++;
+    <span class="kw">return</span> c;
+  };
+}
+
+<span class="ty">var</span> inc = contador();
+print(inc()); <span class="cm">// 1</span>
+print(inc()); <span class="cm">// 2 (mantém estado)</span>
+      </code></pre>
+    </section>
+
+    <section id="ordem-superior">
+      <h2>4) Funções de ordem superior (map, where, reduce)</h2>
+      <pre><code>
+<span class="ty">final</span> nums = [1,2,3,4,5];
+
+<span class="cm">// map: transforma elementos</span>
+<span class="ty">final</span> dobrados = nums.map((n) =&gt; n * 2).toList();   <span class="cm">// [2,4,6,8,10]</span>
+
+<span class="cm">// where: filtra</span>
+<span class="ty">final</span> pares = nums.where((n) =&gt; n.isEven).toList();     <span class="cm">// [2,4]</span>
+
+<span class="cm">// reduce: acumula em um único valor</span>
+<span class="ty">final</span> soma = nums.reduce((acc, n) =&gt; acc + n);        <span class="cm">// 15</span>
+      </code></pre>
+      <div class="tip"><b>Boa prática:</b> use <code>.fold(valorInicial, (acc, x) =&gt; ...)</code> quando precisar de tipo/valor inicial explícito.</div>
+    </section>
+
+    <section id="async">
+      <h2>5) Assíncrono: <code>Future</code>, <code>async</code> e <code>await</code></h2>
+      <pre><code>
+<span class="kw">Future&lt;String&gt;</span> <span class="fn">buscarUsuario</span>(<span class="ty">int</span> id) <span class="kw">async</span> {
+  <span class="kw">await</span> <span class="kw">Future</span>.delayed(<span class="ty">Duration</span>(milliseconds: 300));
+  <span class="kw">return</span> <span class="st">"user_$id"</span>;
+}
+
+<span class="kw">Future&lt;void&gt;</span> <span class="fn">main</span>() <span class="kw">async</span> {
+  <span class="ty">try</span> {
+    <span class="ty">final</span> u = <span class="kw">await</span> buscarUsuario(7);
+    print(<span class="st">"Olá, $u"</span>);
+  } <span class="ty">catch</span> (e) {
+    print(<span class="st">"Erro: $e"</span>);
+  }
+}
+      </code></pre>
+      <div class="warn"><b>Atenção:</b> não esqueça de propagar ou tratar erros assíncronos com <code>try/catch</code> ou <code>on</code>.</div>
+    </section>
+
+    <section id="typedef-tearoff">
+      <h2>6) <code>typedef</code> e function tear-offs</h2>
+      <pre><code>
+<span class="cm">// typedef para clarear assinaturas</span>
+<span class="kw">typedef</span> <span class="ty">Transform</span> = <span class="ty">int</span> <span class="kw">Function</span>(<span class="ty">int</span>);
+
+<span class="ty">int</span> <span class="fn">triplo</span>(<span class="ty">int</span> x) =&gt; x * 3;
+
+<span class="ty">List&lt;int&gt;</span> <span class="fn">aplicar</span>(<span class="ty">List&lt;int&gt;</span> xs, <span class="ty">Transform</span> f) {
+  <span class="kw">return</span> xs.map(f).toList(); <span class="cm">// tear-off: passa referência da função</span>
+}
+
+print(aplicar([1,2,3], triplo)); <span class="cm">// [3,6,9]</span>
+      </code></pre>
+    </section>
+
+    <section id="records-retorno">
+      <h2>7) Retorno múltiplo com <code>Records</code></h2>
+      <pre><code>
+(<span class="ty">double</span> media, <span class="ty">int</span> max) <span class="fn">estatisticas</span>(<span class="ty">List&lt;int&gt;</span> xs) {
+  <span class="ty">var</span> soma = xs.fold(0, (a,b) =&gt; a + b);
+  <span class="kw">return</span> (soma / xs.length, xs.reduce((a,b) =&gt; a &gt; b ? a : b));
+}
+
+<span class="ty">void</span> <span class="fn">main</span>() {
+  <span class="ty">final</span> r = estatisticas([3,7,2,10]);
+  print(<span class="st">"média=${r.$1}, max=${r.$2}"</span>);
+
+  <span class="cm">// Com nomes</span>
+  <span class="ty">final</span> r2 = (<span class="ty">media</span>: 4.5, <span class="ty">max</span>: 10);
+  print(<span class="st">"média=${r2.media}, max=${r2.max}"</span>);
+}
+      </code></pre>
+    </section>
+
+    <section id="recursao">
+      <h2>8) Recursão e otimizações simples</h2>
+      <pre><code>
+<span class="ty">int</span> <span class="fn">fatorial</span>(<span class="ty">int</span> n) {
+  <span class="kw">if</span> (n &lt;= 1) <span class="kw">return</span> 1;
+  <span class="kw">return</span> n * fatorial(n - 1);
+}
+
+<span class="cm">// Versão iterativa evita estouro de pilha em n grandes</span>
+<span class="ty">int</span> <span class="fn">fatorialIter</span>(<span class="ty">int</span> n) {
+  <span class="ty">var</span> r = 1;
+  <span class="kw">for</span> (<span class="ty">var</span> i = 2; i &lt;= n; i++) {
+    r *= i;
+  }
+  <span class="kw">return</span> r;
+}
+      </code></pre>
+    </section>
+
+    <section id="boas-praticas">
+      <h2>9) Boas práticas</h2>
+      <ul>
+        <li>Dê nomes claros às funções; verbos para ações (<code>calcularTotal</code>), substantivos para consultas (<code>total</code>).</li>
+        <li>Prefira tipos explícitos em APIs públicas.</li>
+        <li>Evite funções “faz-tudo”; separe responsabilidades.</li>
+        <li>Use <code>typedef</code> para documentar callbacks complexos.</li>
+        <li>Em assíncrono, trate timeouts e erros.</li>
+      </ul>
+    </section>
+
+    <section id="exercicios">
+      <h2>10) Exercícios rápidos</h2>
+      <ol>
+        <li>Implemente <code>mapearNomes</code> que recebe <code>List&lt;String&gt;</code> e retorna <code>List&lt;int&gt;</code> com os tamanhos.</li>
+        <li>Crie <code>buscarCep</code> assíncrona que simula I/O com <code>Future.delayed</code> e retorna um <code>Record</code> nomeado com <code>(logradouro, cidade)</code>.</li>
+        <li>Use <code>reduce</code> para obter o menor elemento de uma lista de inteiros.</li>
+        <li>Escreva um <code>contador()</code> que retorna uma função que mantém estado interno.</li>
+      </ol>
+    </section>
+
+    <footer style="text-align:center;color:var(--muted);padding:24px 0 40px">
+      Feito para estudos de Dart • © 2025
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,2769 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Notebook Gamer",
+      "preco": 5500.0,
+      "estoque": 10,
+      "categoria": "Eletrônicos"
+    },
+    {
+      "id": 2,
+      "nome": "Mouse Sem Fio",
+      "preco": 120.0,
+      "estoque": 50,
+      "categoria": "Acessórios"
+    },
+    {
+      "id": 3,
+      "nome": "Teclado Mecânico",
+      "preco": 350.0,
+      "estoque": 20,
+      "categoria": "Acessórios"
+    },
+    {
+      "id": 4,
+      "nome": "Monitor 27''",
+      "preco": 1600.0,
+      "estoque": 15,
+      "categoria": "Eletrônicos"
+    },
+    {
+      "id": 5,
+      "nome": "Headset Gamer",
+      "preco": 500.0,
+      "estoque": 30,
+      "categoria": "Acessórios"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "data": "2025-03-07",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        }
+      ],
+      "valorTotalPedido": 360.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 2,
+      "data": "2025-06-14",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        }
+      ],
+      "valorTotalPedido": 9550.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 3,
+      "data": "2025-03-02",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 500.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 4,
+      "data": "2025-07-25",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        }
+      ],
+      "valorTotalPedido": 2410.0,
+      "status": "Pago"
+    },
+    {
+      "id": 5,
+      "data": "2025-07-30",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        }
+      ],
+      "valorTotalPedido": 12600.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 6,
+      "data": "2025-03-27",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        }
+      ],
+      "valorTotalPedido": 3100.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 7,
+      "data": "2025-08-04",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        }
+      ],
+      "valorTotalPedido": 1850.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 8,
+      "data": "2025-07-11",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 8360.0,
+      "status": "Pago"
+    },
+    {
+      "id": 9,
+      "data": "2025-02-03",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 5650.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 10,
+      "data": "2025-08-06",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 2550.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 11,
+      "data": "2025-04-06",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 1290.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 12,
+      "data": "2025-07-05",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 12200.0,
+      "status": "Pago"
+    },
+    {
+      "id": 13,
+      "data": "2025-01-12",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        }
+      ],
+      "valorTotalPedido": 2190.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 14,
+      "data": "2025-03-09",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        }
+      ],
+      "valorTotalPedido": 5500.0,
+      "status": "Pago"
+    },
+    {
+      "id": 15,
+      "data": "2025-05-25",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 15750.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 16,
+      "data": "2025-05-13",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        }
+      ],
+      "valorTotalPedido": 2190.0,
+      "status": "Pago"
+    },
+    {
+      "id": 17,
+      "data": "2025-03-11",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        }
+      ],
+      "valorTotalPedido": 4260.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 18,
+      "data": "2025-01-01",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        }
+      ],
+      "valorTotalPedido": 4120.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 19,
+      "data": "2025-05-23",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        }
+      ],
+      "valorTotalPedido": 8360.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 20,
+      "data": "2025-07-20",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        }
+      ],
+      "valorTotalPedido": 13540.0,
+      "status": "Pago"
+    },
+    {
+      "id": 21,
+      "data": "2025-01-06",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 5300.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 22,
+      "data": "2025-09-07",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 860.0,
+      "status": "Pago"
+    },
+    {
+      "id": 23,
+      "data": "2025-06-16",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        }
+      ],
+      "valorTotalPedido": 700.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 24,
+      "data": "2025-08-22",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        }
+      ],
+      "valorTotalPedido": 11700.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 25,
+      "data": "2025-05-01",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 720.0,
+      "status": "Pago"
+    },
+    {
+      "id": 26,
+      "data": "2025-09-06",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        }
+      ],
+      "valorTotalPedido": 9600.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 27,
+      "data": "2025-01-26",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        }
+      ],
+      "valorTotalPedido": 830.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 28,
+      "data": "2025-03-04",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        }
+      ],
+      "valorTotalPedido": 4140.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 29,
+      "data": "2025-06-30",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        }
+      ],
+      "valorTotalPedido": 1600.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 30,
+      "data": "2025-03-23",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        }
+      ],
+      "valorTotalPedido": 360.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 31,
+      "data": "2025-07-06",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 240.0,
+      "status": "Pago"
+    },
+    {
+      "id": 32,
+      "data": "2025-01-11",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        }
+      ],
+      "valorTotalPedido": 2650.0,
+      "status": "Pago"
+    },
+    {
+      "id": 33,
+      "data": "2025-09-01",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        }
+      ],
+      "valorTotalPedido": 16850.0,
+      "status": "Pago"
+    },
+    {
+      "id": 34,
+      "data": "2025-03-12",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        }
+      ],
+      "valorTotalPedido": 7120.0,
+      "status": "Pago"
+    },
+    {
+      "id": 35,
+      "data": "2025-04-22",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        }
+      ],
+      "valorTotalPedido": 7100.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 36,
+      "data": "2025-04-26",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 1050.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 37,
+      "data": "2025-01-04",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        }
+      ],
+      "valorTotalPedido": 38860.0,
+      "status": "Pago"
+    },
+    {
+      "id": 38,
+      "data": "2025-06-28",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        }
+      ],
+      "valorTotalPedido": 5160.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 39,
+      "data": "2025-02-24",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        }
+      ],
+      "valorTotalPedido": 10300.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 40,
+      "data": "2025-01-10",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        }
+      ],
+      "valorTotalPedido": 11000.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 41,
+      "data": "2025-06-07",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 1050.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 42,
+      "data": "2025-02-18",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        }
+      ],
+      "valorTotalPedido": 16860.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 43,
+      "data": "2025-02-19",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        }
+      ],
+      "valorTotalPedido": 11000.0,
+      "status": "Pago"
+    },
+    {
+      "id": 44,
+      "data": "2025-03-16",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 2200.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 45,
+      "data": "2025-05-31",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        }
+      ],
+      "valorTotalPedido": 4800.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 46,
+      "data": "2025-03-29",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        }
+      ],
+      "valorTotalPedido": 38860.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 47,
+      "data": "2025-03-21",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        }
+      ],
+      "valorTotalPedido": 6550.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 48,
+      "data": "2025-04-10",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        }
+      ],
+      "valorTotalPedido": 2100.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 49,
+      "data": "2025-02-03",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 500.0,
+      "status": "Pago"
+    },
+    {
+      "id": 50,
+      "data": "2025-02-05",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        }
+      ],
+      "valorTotalPedido": 16500.0,
+      "status": "Pago"
+    },
+    {
+      "id": 51,
+      "data": "2025-07-09",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        }
+      ],
+      "valorTotalPedido": 11000.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 52,
+      "data": "2025-08-02",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        }
+      ],
+      "valorTotalPedido": 1850.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 53,
+      "data": "2025-07-15",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 500.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 54,
+      "data": "2025-03-24",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        }
+      ],
+      "valorTotalPedido": 38500.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 55,
+      "data": "2025-02-28",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        }
+      ],
+      "valorTotalPedido": 16500.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 56,
+      "data": "2025-05-11",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 1220.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 57,
+      "data": "2025-02-27",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        }
+      ],
+      "valorTotalPedido": 6040.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 58,
+      "data": "2025-05-04",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        }
+      ],
+      "valorTotalPedido": 8000.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 59,
+      "data": "2025-03-12",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        }
+      ],
+      "valorTotalPedido": 5500.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 60,
+      "data": "2025-01-03",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 940.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 61,
+      "data": "2025-01-06",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        }
+      ],
+      "valorTotalPedido": 4200.0,
+      "status": "Pago"
+    },
+    {
+      "id": 62,
+      "data": "2025-06-07",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 1050.0,
+      "status": "Pago"
+    },
+    {
+      "id": 63,
+      "data": "2025-06-12",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        }
+      ],
+      "valorTotalPedido": 21300.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 64,
+      "data": "2025-01-19",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        }
+      ],
+      "valorTotalPedido": 2650.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 65,
+      "data": "2025-03-04",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        }
+      ],
+      "valorTotalPedido": 120.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 66,
+      "data": "2025-04-15",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        }
+      ],
+      "valorTotalPedido": 7400.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 67,
+      "data": "2025-06-05",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        }
+      ],
+      "valorTotalPedido": 7100.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 68,
+      "data": "2025-02-25",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        }
+      ],
+      "valorTotalPedido": 18220.0,
+      "status": "Pago"
+    },
+    {
+      "id": 69,
+      "data": "2025-08-15",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        }
+      ],
+      "valorTotalPedido": 2540.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 70,
+      "data": "2025-09-02",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        }
+      ],
+      "valorTotalPedido": 21560.0,
+      "status": "Pago"
+    },
+    {
+      "id": 71,
+      "data": "2025-01-23",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        }
+      ],
+      "valorTotalPedido": 6740.0,
+      "status": "Pago"
+    },
+    {
+      "id": 72,
+      "data": "2025-05-12",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        }
+      ],
+      "valorTotalPedido": 6090.0,
+      "status": "Pago"
+    },
+    {
+      "id": 73,
+      "data": "2025-05-28",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 1,
+          "valorUnitario": 5500.0,
+          "valorTotal": 5500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        }
+      ],
+      "valorTotalPedido": 8700.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 74,
+      "data": "2025-08-28",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        }
+      ],
+      "valorTotalPedido": 6540.0,
+      "status": "Pago"
+    },
+    {
+      "id": 75,
+      "data": "2025-05-07",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        }
+      ],
+      "valorTotalPedido": 24620.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 76,
+      "data": "2025-05-02",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        }
+      ],
+      "valorTotalPedido": 4820.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 77,
+      "data": "2025-06-13",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        }
+      ],
+      "valorTotalPedido": 3200.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 78,
+      "data": "2025-08-31",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 10650.0,
+      "status": "Pago"
+    },
+    {
+      "id": 79,
+      "data": "2025-06-10",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        }
+      ],
+      "valorTotalPedido": 700.0,
+      "status": "Pago"
+    },
+    {
+      "id": 80,
+      "data": "2025-03-15",
+      "cliente": {
+        "id": 5,
+        "nome": "Rodrigo Lima",
+        "email": "rodrigo@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        }
+      ],
+      "valorTotalPedido": 120.0,
+      "status": "Pago"
+    },
+    {
+      "id": 81,
+      "data": "2025-06-07",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 11480.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 82,
+      "data": "2025-05-06",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 6200.0,
+      "status": "Pago"
+    },
+    {
+      "id": 83,
+      "data": "2025-06-11",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 11240.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 84,
+      "data": "2025-08-29",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        }
+      ],
+      "valorTotalPedido": 12350.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 85,
+      "data": "2025-03-12",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        }
+      ],
+      "valorTotalPedido": 240.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 86,
+      "data": "2025-05-02",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 4440.0,
+      "status": "Pago"
+    },
+    {
+      "id": 87,
+      "data": "2025-07-19",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        }
+      ],
+      "valorTotalPedido": 2700.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 88,
+      "data": "2025-01-13",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 500.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 89,
+      "data": "2025-01-18",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 3,
+          "valorUnitario": 500.0,
+          "valorTotal": 1500.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        }
+      ],
+      "valorTotalPedido": 2860.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 90,
+      "data": "2025-05-25",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        }
+      ],
+      "valorTotalPedido": 500.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 91,
+      "data": "2025-08-08",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 2,
+          "valorUnitario": 120.0,
+          "valorTotal": 240.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 3890.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 92,
+      "data": "2025-02-23",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 3,
+          "quantidade": 2,
+          "valorUnitario": 350.0,
+          "valorTotal": 700.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        }
+      ],
+      "valorTotalPedido": 19300.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 93,
+      "data": "2025-02-08",
+      "cliente": {
+        "id": 3,
+        "nome": "Carlos Souza",
+        "email": "carlos@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 1,
+          "valorUnitario": 120.0,
+          "valorTotal": 120.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        }
+      ],
+      "valorTotalPedido": 1480.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 94,
+      "data": "2025-03-29",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        }
+      ],
+      "valorTotalPedido": 5160.0,
+      "status": "Pago"
+    },
+    {
+      "id": 95,
+      "data": "2025-07-15",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 5,
+          "quantidade": 2,
+          "valorUnitario": 500.0,
+          "valorTotal": 1000.0
+        }
+      ],
+      "valorTotalPedido": 1000.0,
+      "status": "Pago"
+    },
+    {
+      "id": 96,
+      "data": "2025-02-09",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 3,
+          "valorUnitario": 350.0,
+          "valorTotal": 1050.0
+        }
+      ],
+      "valorTotalPedido": 1050.0,
+      "status": "Cancelado"
+    },
+    {
+      "id": 97,
+      "data": "2025-06-19",
+      "cliente": {
+        "id": 1,
+        "nome": "João Silva",
+        "email": "joao@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 1,
+          "quantidade": 3,
+          "valorUnitario": 5500.0,
+          "valorTotal": 16500.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 3,
+          "valorUnitario": 1600.0,
+          "valorTotal": 4800.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        }
+      ],
+      "valorTotalPedido": 24500.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 98,
+      "data": "2025-01-20",
+      "cliente": {
+        "id": 4,
+        "nome": "Ana Pereira",
+        "email": "ana@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        }
+      ],
+      "valorTotalPedido": 350.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 99,
+      "data": "2025-06-26",
+      "cliente": {
+        "id": 6,
+        "nome": "Fernanda Alves",
+        "email": "fernanda@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 4,
+          "quantidade": 1,
+          "valorUnitario": 1600.0,
+          "valorTotal": 1600.0
+        },
+        {
+          "produtoId": 4,
+          "quantidade": 2,
+          "valorUnitario": 1600.0,
+          "valorTotal": 3200.0
+        },
+        {
+          "produtoId": 5,
+          "quantidade": 1,
+          "valorUnitario": 500.0,
+          "valorTotal": 500.0
+        },
+        {
+          "produtoId": 1,
+          "quantidade": 2,
+          "valorUnitario": 5500.0,
+          "valorTotal": 11000.0
+        }
+      ],
+      "valorTotalPedido": 16300.0,
+      "status": "Pendente"
+    },
+    {
+      "id": 100,
+      "data": "2025-07-29",
+      "cliente": {
+        "id": 2,
+        "nome": "Maria Oliveira",
+        "email": "maria@example.com"
+      },
+      "itens": [
+        {
+          "produtoId": 3,
+          "quantidade": 1,
+          "valorUnitario": 350.0,
+          "valorTotal": 350.0
+        },
+        {
+          "produtoId": 2,
+          "quantidade": 3,
+          "valorUnitario": 120.0,
+          "valorTotal": 360.0
+        }
+      ],
+      "valorTotalPedido": 710.0,
+      "status": "Pago"
+    }
+  ]
+}

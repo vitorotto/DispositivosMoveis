@@ -1,0 +1,280 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Abrangente de Classes em Dart (Null-Safe)</title>
+    <!-- Prism.js para realce de sintaxe -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        p.explanation {
+            background: #e8f4f8;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tutorial Abrangente de Classes em Dart (Null-Safe)</h1>
+    <p>Este tutorial explora classes em Dart (versão 3.5) com suporte a null safety. Ele cobre definição de classes, construtores, herança, mixins, getters/setters, sobrecarga de operadores, classes abstratas, interfaces e membros estáticos. Todos os exemplos são comentados em português para facilitar o aprendizado de alunos.</p>
+
+    <h2>1. Definindo uma Classe</h2>
+    <p>Classes em Dart são usadas para criar objetos com propriedades e métodos. Com null safety, todas as propriedades devem ser inicializadas ou marcadas como nullable (`?`) ou `late`.</p>
+
+    <h3>Exemplo 1: Classe Simples</h3>
+    <pre><code class="language-dart">
+class Estudante {
+  // Propriedades não-nuláveis (devem ser inicializadas)
+  final String nome;
+  final int idade;
+  final double nota;
+
+  // Construtor com parâmetros requeridos
+  Estudante({required this.nome, required this.idade, required this.nota});
+
+  // Método para verificar aprovação
+  bool estaAprovado() {
+    return nota >= 6.0;
+  }
+
+  // Método para exibir informações
+  void exibirInfo() {
+    print('Estudante: $nome, Idade: $idade, Nota: $nota, Aprovado: ${estaAprovado() ? "Sim" : "Não"}');
+  }
+}
+
+// Função principal para testar
+void main() {
+  // Criando um objeto com parâmetros nomeados
+  var estudante = Estudante(nome: 'João', idade: 20, nota: 7.5);
+  estudante.exibirInfo(); // Saída: Estudante: João, Idade: 20, Nota: 7.5, Aprovado: Sim
+}
+    </code></pre>
+    <p class="explanation"><strong>Explicação:</strong> A classe <code>Estudante</code> usa propriedades <code>final</code> (imutáveis) e um construtor com parâmetros <code>required</code> para garantir inicialização. Null safety exige que todas as propriedades sejam inicializadas no momento da criação do objeto.</p>
+
+    <h3>Exemplo 2: Classe com Lista Nullable</h3>
+    <pre><code class="language-dart">
+class Curso {
+  // Propriedades
+  final String nome;
+  List<String> alunos; // Lista não-nulável, inicializada no construtor
+
+  // Construtor com lista inicializada como vazia por padrão
+  Curso(this.nome, {List<String>? alunos}) : alunos = alunos ?? [];
+
+  // Método para adicionar aluno
+  void adicionarAluno(String aluno) {
+    alunos.add(aluno);
+    print('$aluno foi adicionado ao curso $nome');
+  }
+
+  // Método para exibir alunos
+  void exibirAlunos() {
+    print('Curso: $nome');
+    print('Alunos: ${alunos.isEmpty ? "Nenhum aluno" : alunos.join(", ")}');
+  }
+}
+
+// Função principal para testar
+void main() {
+  // Criando um curso com lista vazia
+  var curso = Curso('Programação em Dart');
+  curso.adicionarAluno('Maria'); // Saída: Maria foi adicionado ao curso Programação em Dart
+  curso.adicionarAluno('Pedro');
+  curso.exibirAlunos(); // Saída: Curso: Programação em Dart, Alunos: Maria, Pedro
+}
+    </code></pre>
+    <p class="explanation"><strong>Explicação:</strong> A propriedade <code>alunos</code> é inicializada no construtor com uma lista vazia se nula (<code>alunos ?? []</code>). O parâmetro <code>alunos</code> é nullable (<code>List<String>?</code>) para permitir flexibilidade na criação.</p>
+
+    <h2>2. Construtores</h2>
+    <p>Dart suporta construtores padrão, nomeados e factory, todos adaptados para null safety.</p>
+
+    <h3>Exemplo 1: Construtor Padrão e Nomeado</h3>
+    <pre><code class="language-dart">
+class Produto {
+  // Propriedades
+  final String nome;
+  double preco;
+
+  // Construtor padrão
+  Produto({required this.nome, required this.preco});
+
+  // Construtor nomeado para promoção
+  Produto.emPromocao({required this.nome, required double precoOriginal})
+      : preco = precoOriginal * 0.8;
+
+  // Método para exibir detalhes
+  void exibirDetalhes() {
+    print('Produto: $nome, Preço: R\$${preco.toStringAsFixed(2)}');
+  }
+}
+
+// Função principal para testar
+void main() {
+  var produto1 = Produto(nome: 'Celular', preco: 1000.0);
+  var produto2 = Produto.emPromocao(nome: 'Notebook', precoOriginal: 2000.0);
+  produto1.exibirDetalhes(); // Saída: Produto: Celular, Preço: R$1000.00
+  produto2.exibirDetalhes(); // Saída: Produto: Notebook, Preço: R$1600.00
+}
+    </code></pre>
+    <p class="explanation"><strong>Explicação:</strong> O construtor usa <code>required</code> para parâmetros obrigatórios. O construtor nomeado <code>emPromocao</code> calcula o preço com desconto. Todas as propriedades são inicializadas para atender ao null safety.</p>
+
+    <h3>Exemplo 2: Construtor Factory</h3>
+    <pre><code class="language-dart">
+class Singleton {
+  // Propriedade estática para a única instância
+  static final Singleton _instancia = Singleton._interno();
+
+  // Propriedade
+  final String nome;
+
+  // Construtor privado
+  Singleton._interno() : nome = 'Instância Única';
+
+  // Construtor factory para retornar a mesma instância
+  factory Singleton() => _instancia;
+
+  // Método para exibir mensagem
+  void exibirMensagem() {
+    print('Esta é a $nome');
+  }
+}
+
+// Função principal para testar
+void main() {
+  var s1 = Singleton();
+  var s2 = Singleton();
+  s1.exibirMensagem(); // Saída: Esta é a Instância Única
+  print(identical(s1, s2)); // Saída: true
+}
+    </code></pre>
+    <p class="explanation"><strong>Explicação:</strong> O padrão Singleton usa um construtor <code>factory</code> para retornar a mesma instância. A propriedade <code>nome</code> é <code>final</code> e inicializada diretamente, garantindo null safety.</p>
+
+    <h2>3. Herança</h2>
+    <p>Herança permite reutilizar código, com null safety garantindo inicialização adequada.</p>
+
+    <h3>Exemplo 1: Herança Simples</h3>
+    <pre><code class="language-dart">
+class Veiculo {
+  // Propriedades
+  final String marca;
+  final int ano;
+
+  // Construtor
+  Veiculo({required this.marca, required this.ano});
+
+  // Método que pode ser sobrescrito
+  void mover() {
+    print('$marca está se movendo');
+  }
+}
+
+class Carro extends Veiculo {
+  // Construtor que inicializa a classe pai
+  Carro({required String marca, required int ano}) : super(marca: marca, ano: ano);
+
+  // Sobrescrevendo o método
+  @override
+  void mover() {
+    print('Carro $marca do ano $ano está acelerando na estrada');
+  }
+}
+
+// Função principal para testar
+void main() {
+  var carro = Carro(marca: 'Toyota', ano: 2022);
+  carro.mover(); // Saída: Carro Toyota do ano 2022 está acelerando na estrada
+}
+    </code></pre>
+    <p class="explanation"><strong>Explicação:</strong> A classe <code>Carro</code> herda de <code>Veiculo</code> usando <code>extends</code>. Propriedades são <code>final</code> e inicializadas via construtor com <code>required</code>. O método <code>mover</code> é sobrescrito.</p>
+
+    <h3>Exemplo 2: Mixins</h3>
+    <pre><code class="language-dart">
+mixin Eletrico {
+  // Método do mixin
+  void carregarBateria() {
+    print('Carregando bateria elétrica');
+  }
+}
+
+class CarroEletrico extends Veiculo with Eletrico {
+  // Construtor
+  CarroEletrico({required String marca, required int ano}) : super(marca: marca, ano: ano);
+
+  @override
+  void mover() {
+    print('Carro elétrico $marca do ano $ano está se movendo silenciosamente');
+  }
+}
+
+// Função principal para testar
+void main() {
+  var carro = CarroEletrico(marca: 'Tesla', ano: 2023);
+  carro.mover(); // Saída: Carro elétrico Tesla do ano 2023 está se movendo silenciosamente
+  carro.carregarBateria(); // Saída: Carregando bateria elétrica
+}
+    </code></pre>
+    <p class="explanation"><strong>Explicação:</strong> O mixin <code>Eletrico</code> adiciona funcionalidade à <code>CarroEletrico</code>. Null safety é garantido pela inicialização das propriedades no construtor da classe pai.</p>
+
+    <h2>4. Getters e Setters</h2>
+    <p>Getters e setters control

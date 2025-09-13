@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <title>Tutorial Dart — Navegação em Listas (2025)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; background:#0e172a; color:#e2e8f0; line-height:1.6; padding:20px; }
+    h1,h2,h3 { color:#7cc4ff; }
+    pre { background:#1e293b; padding:1em; border-radius:10px; overflow-x:auto; }
+    code { font-family: Consolas, monospace; font-size:15px; }
+    .comment { color:#86efac; font-weight:bold; }
+    kbd { background:#334155; color:#f1f5f9; padding:2px 6px; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <h1>📘 Tutorial Dart 3.9 — Navegação em Listas</h1>
+  <p>Este tutorial apresenta as principais funções para trabalhar com <b>listas</b> e <b>iteráveis</b> em Dart moderno (2025).</p>
+
+  <h2>1) forEach</h2>
+  <pre><code>
+void main() {
+  var frutas = ['maçã', 'banana', 'laranja'];
+  frutas.forEach(print); 
+  // <span class="comment">👉 Executa uma função para cada item</span>
+}
+  </code></pre>
+
+  <h2>2) where</h2>
+  <pre><code>
+void main() {
+  var flybyObjects = ['turnLeft', 'turnRight', 'orbit', 'mars'];
+  flybyObjects.where((name) => name.contains('turn')).forEach(print);
+  // <span class="comment">👉 Filtra elementos com base em condição</span>
+}
+  </code></pre>
+
+  <h2>3) map</h2>
+  <pre><code>
+void main() {
+  var numeros = [1, 2, 3];
+  var dobrados = numeros.map((n) => n * 2);
+  print(dobrados.toList());
+  // <span class="comment">👉 Transforma cada item e retorna novo Iterable</span>
+}
+  </code></pre>
+
+  <h2>4) firstWhere</h2>
+  <pre><code>
+void main() {
+  var nomes = ['Ana', 'Pedro', 'Carlos'];
+  var resultado = nomes.firstWhere((n) => n.startsWith('P'));
+  print(resultado); 
+  // <span class="comment">👉 Retorna o primeiro que satisfaz a condição</span>
+}
+  </code></pre>
+
+  <h2>5) any & every</h2>
+  <pre><code>
+void main() {
+  var numeros = [2, 4, 6];
+  print(numeros.any((n) => n > 5));   // true
+  print(numeros.every((n) => n.isEven)); // true
+  // <span class="comment">👉 any: existe ao menos 1 / every: todos atendem</span>
+}
+  </code></pre>
+
+  <h2>6) take & skip</h2>
+  <pre><code>
+void main() {
+  var lista = [10, 20, 30, 40, 50];
+  print(lista.take(3).toList()); // [10,20,30]
+  print(lista.skip(2).toList()); // [30,40,50]
+  // <span class="comment">👉 Pegar os primeiros N / pular os primeiros N</span>
+}
+  </code></pre>
+
+  <h2>7) takeWhile & skipWhile</h2>
+  <pre><code>
+void main() {
+  var lista = [2,4,6,7,8];
+  print(lista.takeWhile((n) => n.isEven).toList()); // [2,4,6]
+  print(lista.skipWhile((n) => n < 7).toList()); // [7,8]
+  // <span class="comment">👉 Pegar/pular enquanto a condição for verdadeira</span>
+}
+  </code></pre>
+
+  <h2>8) reduce & fold</h2>
+  <pre><code>
+void main() {
+  var numeros = [1,2,3,4];
+  var soma = numeros.reduce((a,b) => a+b);
+  print(soma); // 10
+  var somaFold = numeros.fold(10, (a,b) => a+b);
+  print(somaFold); // 20
+  // <span class="comment">👉 reduce: combina itens / fold: idem mas com valor inicial</span>
+}
+  </code></pre>
+
+  <h2>9) expand</h2>
+  <pre><code>
+void main() {
+  var listas = [[1,2], [3,4]];
+  var resultado = listas.expand((i) => i);
+  print(resultado.toList()); // [1,2,3,4]
+  // <span class="comment">👉 "Achata" listas dentro de listas</span>
+}
+  </code></pre>
+
+  <h2>10) sort & reversed</h2>
+  <pre><code>
+void main() {
+  var nomes = ['Carlos','Ana','Bruno'];
+  nomes.sort();
+  print(nomes); // [Ana,Bruno,Carlos]
+
+  print(nomes.reversed.toList());
+  // <span class="comment">👉 sort: ordena / reversed: inverte</span>
+}
+  </code></pre>
+
+  <h2>11) join & split</h2>
+  <pre><code>
+void main() {
+  var palavras = ['Dart','é','top'];
+  var frase = palavras.join(' ');
+  print(frase); // "Dart é top"
+
+  var chars = 'abc'.split('');
+  print(chars); // ['a','b','c']
+  // <span class="comment">👉 Converter lista em string e vice-versa</span>
+}
+  </code></pre>
+
+  <h2>12) toSet & toList</h2>
+  <pre><code>
+void main() {
+  var numeros = [1,2,2,3];
+  print(numeros.toSet()); // {1,2,3}
+  print(numeros.toList()); // [1,2,2,3]
+  // <span class="comment">👉 Converter para outro tipo de coleção</span>
+}
+  </code></pre>
+
+  <footer>
+    <p>🚀 Pronto! Você agora conhece as funções principais de navegação em listas no Dart moderno.</p>
+    <p><kbd>dart run</kbd> para executar seus exemplos.</p>
+  </footer>
+</body>
+</html>
