@@ -52,7 +52,7 @@ class Cliente {
 
 class ItemPedido {
   final int produtoId;
-  final int quantidade;
+  final int? quantidade;
   final double valorUnitario;
   final double valorTotal;
 
@@ -99,4 +99,74 @@ class Produto {
   }
 }
 
-void main(List<String> args) {}
+class ListaPedidos {
+  List<Pedido> pedidos;
+
+  ListaPedidos(this.pedidos);
+
+  // Filtrar por cliente
+  List<Pedido> filtrarPorCliente(String nomeCliente) {
+    return pedidos.where((p) => p.cliente.nome == nomeCliente).toList();
+  }
+
+  // Filtrar por produto
+  List<Pedido> filtrarPorProduto(int produtoId) {
+    return pedidos
+        .where((p) => p.itens.any((i) => i.produtoId == produtoId))
+        .toList();
+  }
+
+  // Ticket médio
+  double ticketMedio() {
+    if (pedidos.isEmpty) return 0.0;
+    double total = pedidos.fold(0, (soma, p) => soma + p.valorTotalPedido);
+    return total / pedidos.length;
+  }
+
+  // Preço médio
+  double precoMedio() {
+    List<double> precos = [];
+    for (var pedido in pedidos) {
+      precos.addAll(pedido.itens.map((i) => i.valorUnitario));
+    }
+    if (precos.isEmpty) return 0.0;
+    return precos.reduce((a, b) => a + b) / precos.length;
+  }
+
+  // Total por produto
+  Map<int, double> totalPorProduto() {
+    Map<int, double> totais = {};
+    for (var pedido in pedidos) {
+      for (var item in pedido.itens) {
+        totais[item.produtoId] =
+            (totais[item.produtoId] ?? 0) + item.valorTotal;
+      }
+    }
+    return totais;
+  }
+}
+
+void main() async {
+  Process.run('cls', [], runInShell: true);
+
+  final file = File("Aula06/pratica/pedidos100.json");
+  final conteudo = await file.readAsString();
+  final data = jsonDecode(conteudo);
+
+  List<Pedido> pedidos = (data['pedidos'] as List)
+      .map((e) => Pedido.fromJson(e))
+      .toList();
+
+  var listaPedidos = ListaPedidos(pedidos);
+
+  print("Ticket médio: ${listaPedidos.ticketMedio()}");
+  print("Preço médio: ${listaPedidos.precoMedio()}");
+
+  var maria = listaPedidos.filtrarPorCliente("Maria Oliveira");
+  print("Pedidos da Maria: ${maria.length}");
+
+  var notebook = listaPedidos.filtrarPorProduto(1);
+  print("Pedidos com Notebook Gamer: ${notebook.length}");
+
+  print("Total por produto: ${listaPedidos.totalPorProduto()}");
+}
