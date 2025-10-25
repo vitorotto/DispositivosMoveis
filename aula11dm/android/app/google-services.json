@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1017485381289",
+    "project_id": "clientes-aula-11",
+    "storage_bucket": "clientes-aula-11.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017485381289:android:a939701a0000edbcc363b8",
+        "android_client_info": {
+          "package_name": "com.example.exdb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnTwoBd3bT772osoFRG7-_tKyrIUG1pB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

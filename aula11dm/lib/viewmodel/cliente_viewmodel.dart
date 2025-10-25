@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '../model/cliente.dart';
-import '../repository/cliente_repository.dart';
+// import '../repository/cliente_repository.dart';
+import '../repository/cliente_firebase_repository.dart';
 
 // DTO (Data Transfer Object) para expor dados formatados à View
 // A View NÃO deve acessar o Model diretamente
 class ClienteDTO {
   final int? codigo;
+  final String? id; // firebase
   final String cpf;
   final String nome;
   final String idade;
@@ -14,7 +16,8 @@ class ClienteDTO {
   final String subtitulo; // Dado formatado para exibição
 
   ClienteDTO({
-    required this.codigo,
+    this.codigo,
+    this.id,
     required this.cpf,
     required this.nome,
     required this.idade,
@@ -27,6 +30,7 @@ class ClienteDTO {
   factory ClienteDTO.fromModel(Cliente cliente) {
     return ClienteDTO(
       codigo: cliente.codigo,
+      id: cliente.id,
       cpf: cliente.cpf,
       nome: cliente.nome,
       idade: cliente.idade.toString(),
@@ -40,6 +44,7 @@ class ClienteDTO {
   Cliente toModel() {
     return Cliente(
       codigo: codigo,
+      id: id,
       cpf: cpf,
       nome: nome,
       idade: int.tryParse(idade) ?? 0,
@@ -52,7 +57,7 @@ class ClienteDTO {
 // ViewModel que expõe dados e ações para as Views (usa ChangeNotifier para MVVM reativo)
 class ClienteViewModel extends ChangeNotifier {
   // Repositório de dados (injeção simples via construtor)
-  final ClienteRepository _repository;
+  final ClienteFirebaseRepository _repository;
 
   // Lista interna de clientes (Model) - privada
   List<Cliente> _clientes = [];
@@ -102,7 +107,8 @@ class ClienteViewModel extends ChangeNotifier {
 
   // Atualiza um cliente (recebe dados primitivos da View)
   Future<void> editarCliente({
-    required int codigo,
+    int? codigo,
+    String? id,
     required String cpf,
     required String nome,
     required String idade,
@@ -111,19 +117,20 @@ class ClienteViewModel extends ChangeNotifier {
   }) async {
     final cliente = Cliente(
       codigo: codigo,
+      id: id,
       cpf: cpf,
       nome: nome,
       idade: int.tryParse(idade) ?? 0,
       dataNascimento: dataNascimento,
       cidadeNascimento: cidadeNascimento,
     );
-    await _repository.atualizar(cliente);
+    await _repository.atualizar(id, cliente);
     await loadClientes(_ultimoFiltro);
   }
 
   // Remove um cliente pelo código
-  Future<void> removerCliente(int codigo) async {
-    await _repository.excluir(codigo);
+  Future<void> removerCliente(int? codigo, String? id) async {
+    // await _repository.excluir(codigo);
     await loadClientes(_ultimoFiltro);
   }
 }

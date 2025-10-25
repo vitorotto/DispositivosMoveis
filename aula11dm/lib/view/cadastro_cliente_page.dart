@@ -76,7 +76,8 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
     } else {
       // Atualiza cliente existente
       await vm.editarCliente(
-        codigo: widget.clienteDTO!.codigo!,
+        codigo: widget.clienteDTO?.codigo,
+        id: widget.clienteDTO?.id,
         cpf: _cpfController.text.trim(),
         nome: _nomeController.text.trim(),
         idade: _idadeController.text.trim(),
@@ -140,6 +141,7 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
               ),
 
               // Campo Cidade de Nascimento
+              /*
               Row(
                 children: [
                   // O TextFormField precisa de uma largura definida dentro de um Row.
@@ -188,8 +190,7 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                     child: const Icon(Icons.search),
                   ),
                 ],
-              ),
-
+              ),*/
               const SizedBox(height: 20),
 
               // Botão de salvar

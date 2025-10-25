@@ -108,7 +108,7 @@ class _ListaClientesPageState extends State<ListaClientesPage> {
                               icon: const Icon(Icons.delete, color: Colors.red),
                               onPressed: () async {
                                 // Chama o ViewModel para excluir e atualiza a lista
-                                await vm.removerCliente(dto.codigo!);
+                                await vm.removerCliente(dto.codigo, dto.id);
                               },
                             ),
                           ],

@@ -2,15 +2,24 @@ import 'package:exdb/view/lista_cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'viewmodel/cliente_viewmodel.dart';
-import 'repository/cliente_repository.dart';
 import 'viewmodel/cidade_viewmodel.dart';
 import 'repository/cidade_repository.dart';
 import 'db/db_helper.dart';
+
+// Repository
+// import 'repository/cliente_repository.dart';
+import 'repository/cliente_firebase_repository.dart';
+
+// Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 // Ponto de entrada da aplicação
 Future<void> main() async {
   // Garante que plugins nativos estejam inicializados antes de usar path_provider/sqflite
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // (Opcional) Inicializa o banco explicitamente para evitar atrasos na primeira operação
   await DatabaseHelper.instance.database;
@@ -21,7 +30,7 @@ Future<void> main() async {
       providers: [
         // Fornece uma instância de ClienteViewModel para toda a árvore de widgets
         ChangeNotifierProvider(
-          create: (_) => ClienteViewModel(ClienteRepository()),
+          create: (_) => ClienteViewModel(ClienteFirebaseRepository()),
         ),
         // Fornece uma instância de CidadeViewModel para as telas de cidades
         ChangeNotifierProvider(
