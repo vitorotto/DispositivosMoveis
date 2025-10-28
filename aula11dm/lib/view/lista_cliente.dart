@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodel/cliente_viewmodel.dart';
+import '../main.dart'; // para StorageConfig
 import 'cadastro_cliente_page.dart';
 
 // Tela que exibe a lista e o campo de pesquisa (View)
@@ -32,11 +33,22 @@ class _ListaClientesPageState extends State<ListaClientesPage> {
   Widget build(BuildContext context) {
     // Obtém o ViewModel via Provider
     final vm = Provider.of<ClienteViewModel>(context);
+    // Obtém a configuração global
+    final config = Provider.of<StorageConfig>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Clientes (MVVM + SQLite)'),
         actions: [
+          // Switch global para escolher armazenamento
+          Switch(
+            value: config.useCloud,
+            onChanged: (value) async {
+              await config.setUseCloud(value);
+              // Recarrega a lista após mudança
+              await vm.loadClientes(_searchController.text);
+            },
+          ),
           // Botão para criar novo cliente
           IconButton(
             icon: const Icon(Icons.add),
@@ -108,7 +120,7 @@ class _ListaClientesPageState extends State<ListaClientesPage> {
                               icon: const Icon(Icons.delete, color: Colors.red),
                               onPressed: () async {
                                 // Chama o ViewModel para excluir e atualiza a lista
-                                await vm.removerCliente(dto.codigo, dto.id);
+                                await vm.removerCliente(dto.id);
                               },
                             ),
                           ],

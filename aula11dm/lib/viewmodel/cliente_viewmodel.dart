@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import '../model/cliente.dart';
-// import '../repository/cliente_repository.dart';
-import '../repository/cliente_firebase_repository.dart';
+import '../interface/i_cliente.dart';
 
 // DTO (Data Transfer Object) para expor dados formatados à View
 // A View NÃO deve acessar o Model diretamente
 class ClienteDTO {
-  final int? codigo;
+  final String? codigo;
   final String? id; // firebase
   final String cpf;
   final String nome;
@@ -57,7 +56,7 @@ class ClienteDTO {
 // ViewModel que expõe dados e ações para as Views (usa ChangeNotifier para MVVM reativo)
 class ClienteViewModel extends ChangeNotifier {
   // Repositório de dados (injeção simples via construtor)
-  final ClienteFirebaseRepository _repository;
+  final IClienteRepository _repository;
 
   // Lista interna de clientes (Model) - privada
   List<Cliente> _clientes = [];
@@ -79,7 +78,7 @@ class ClienteViewModel extends ChangeNotifier {
   Future<void> loadClientes([String filtro = '']) async {
     // Guarda o filtro atual
     _ultimoFiltro = filtro;
-    // Busca no repositório
+    // Busca no repositório (por padrão usa o repositório injetado - Firebase)
     _clientes = await _repository.buscar(filtro: filtro);
     // Notifica listeners (Views que usam Provider/Consumer serão atualizadas)
     notifyListeners();
@@ -107,7 +106,7 @@ class ClienteViewModel extends ChangeNotifier {
 
   // Atualiza um cliente (recebe dados primitivos da View)
   Future<void> editarCliente({
-    int? codigo,
+    String? codigo,
     String? id,
     required String cpf,
     required String nome,
@@ -124,13 +123,17 @@ class ClienteViewModel extends ChangeNotifier {
       dataNascimento: dataNascimento,
       cidadeNascimento: cidadeNascimento,
     );
-    await _repository.atualizar(id, cliente);
+    if (id != null) {
+      await _repository.atualizar(id, cliente);
+    }
     await loadClientes(_ultimoFiltro);
   }
 
-  // Remove um cliente pelo código
-  Future<void> removerCliente(int? codigo, String? id) async {
-    // await _repository.excluir(codigo);
+  // Remove um cliente pelo id
+  Future<void> removerCliente(String? id) async {
+    if (id != null) {
+      await _repository.excluir(id);
+    }
     await loadClientes(_ultimoFiltro);
   }
 }

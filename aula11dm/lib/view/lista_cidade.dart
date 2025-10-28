@@ -112,7 +112,7 @@ class _ListaCidadesPageState extends State<ListaCidadesPage> {
                               icon: const Icon(Icons.delete, color: Colors.red),
                               onPressed: () async {
                                 // Chama o ViewModel para excluir e atualiza a lista
-                                await vm.removerCidade(dto.codigo!);
+                                await vm.removerCidade(dto.id!);
                                 await vm.loadCidades(_searchController.text);
                               },
                             ),

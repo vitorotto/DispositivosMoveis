@@ -1,18 +1,57 @@
+import 'package:exdb/firebase_options.dart';
 import 'package:exdb/view/lista_cliente.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'viewmodel/cliente_viewmodel.dart';
 import 'viewmodel/cidade_viewmodel.dart';
+import 'repository/cidade_firebase_repository.dart';
 import 'repository/cidade_repository.dart';
-import 'db/db_helper.dart';
-
-// Repository
-// import 'repository/cliente_repository.dart';
 import 'repository/cliente_firebase_repository.dart';
+import 'repository/cliente_sqlite_repository.dart';
+import 'db/db_helper.dart';
+import 'interface/i_cliente.dart';
+import 'interface/i_cidade.dart';
 
-// Firebase
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+// Provider global para configuração de armazenamento
+class StorageConfig extends ChangeNotifier {
+  bool _useCloud = true; // padrão: nuvem
+  bool get useCloud => _useCloud;
+
+  late IClienteRepository _clienteRepository;
+  late ICidadeRepository _cidadeRepository;
+
+  StorageConfig() {
+    _loadConfig();
+  }
+
+  Future<void> _loadConfig() async {
+    final prefs = await SharedPreferences.getInstance();
+    _useCloud = prefs.getBool('useCloud') ?? true;
+    _clienteRepository = _useCloud
+        ? ClienteFirebaseRepository()
+        : ClienteSqliteRepository();
+    _cidadeRepository = _useCloud
+        ? CidadeFirebaseRepository()
+        : CidadeRepository();
+    notifyListeners();
+  }
+
+  Future<void> setUseCloud(bool value) async {
+    _useCloud = value;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('useCloud', value);
+    _clienteRepository = value
+        ? ClienteFirebaseRepository()
+        : ClienteSqliteRepository();
+    _cidadeRepository = value ? CidadeFirebaseRepository() : CidadeRepository();
+    notifyListeners();
+  }
+
+  IClienteRepository get clienteRepository => _clienteRepository;
+  ICidadeRepository get cidadeRepository => _cidadeRepository;
+}
 
 // Ponto de entrada da aplicação
 Future<void> main() async {
@@ -24,17 +63,26 @@ Future<void> main() async {
   // (Opcional) Inicializa o banco explicitamente para evitar atrasos na primeira operação
   await DatabaseHelper.instance.database;
 
+  // Inicializa configuração global
+  final storageConfig = StorageConfig();
+
   // Executa o app dentro de um Provider que injeta o ViewModel (MVVM)
   runApp(
     MultiProvider(
       providers: [
-        // Fornece uma instância de ClienteViewModel para toda a árvore de widgets
-        ChangeNotifierProvider(
-          create: (_) => ClienteViewModel(ClienteFirebaseRepository()),
+        // Configuração global de armazenamento
+        ChangeNotifierProvider.value(value: storageConfig),
+        // Fornece uma instância de ClienteViewModel usando o repositório ativo
+        ChangeNotifierProxyProvider<StorageConfig, ClienteViewModel>(
+          create: (_) => ClienteViewModel(storageConfig.clienteRepository),
+          update: (_, config, vm) =>
+              vm ?? ClienteViewModel(config.clienteRepository),
         ),
-        // Fornece uma instância de CidadeViewModel para as telas de cidades
-        ChangeNotifierProvider(
-          create: (_) => CidadeViewModel(CidadeRepository()),
+        // Fornece uma instância de CidadeViewModel usando o repositório ativo
+        ChangeNotifierProxyProvider<StorageConfig, CidadeViewModel>(
+          create: (_) => CidadeViewModel(storageConfig.cidadeRepository),
+          update: (_, config, vm) =>
+              vm ?? CidadeViewModel(config.cidadeRepository),
         ),
       ],
       child: const MyApp(),

@@ -1,40 +1,31 @@
 import 'package:exdb/model/cidade.dart';
 import 'package:flutter/material.dart';
-// import '../model/cidade.dart';
-import '../repository/cidade_repository.dart';
+import '../interface/i_cidade.dart';
 
 // DTO (Data Transfer Object) para expor dados formatados à View
 // A View NÃO deve acessar o Model diretamente
 class CidadeDTO {
   final int? codigo;
+  final String? id; // firebase
   final String nome;
 
-  CidadeDTO({
-    required this.codigo,
-    required this.nome,
-  });
+  CidadeDTO({this.codigo, this.id, required this.nome});
 
   // Converte Model para DTO
   factory CidadeDTO.fromModel(Cidade cidade) {
-    return CidadeDTO(
-      codigo: cidade.codigo,
-      nome: cidade.nome,
-    );
+    return CidadeDTO(codigo: cidade.codigo, id: cidade.id, nome: cidade.nome);
   }
 
   // Converte DTO para Model
   Cidade toModel() {
-    return Cidade(
-      codigo: codigo,
-      nome: nome,
-    );
+    return Cidade(codigo: codigo, id: id, nome: nome);
   }
 }
 
 // ViewModel que expõe dados e ações para as Views (usa ChangeNotifier para MVVM reativo)
 class CidadeViewModel extends ChangeNotifier {
   // Repositório de dados (injeção simples via construtor)
-  final CidadeRepository _repository;
+  final ICidadeRepository _repository;
 
   // Lista interna de clientes (Model) - privada
   List<Cidade> _cidades = [];
@@ -62,34 +53,26 @@ class CidadeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Adiciona um cliente (recebe dados primitivos da View)
-  Future<void> adicionarCidade({
-    required String nome
-  }) async {
-    final cidade = Cidade(
-      nome: nome,
-    );
+  // Adiciona uma cidade (recebe dados primitivos da View)
+  Future<void> adicionarCidade({required String nome}) async {
+    final cidade = Cidade(nome: nome);
     await _repository.inserir(cidade);
     // Recarrega a lista com o último filtro aplicado
     await loadCidades(_ultimoFiltro);
   }
 
-  // Atualiza um cliente (recebe dados primitivos da View)
-  Future<void> editarCidade({
-    required int codigo,
-    required String nome
-  }) async {
-    final cidade = Cidade(
-      codigo: codigo,
-      nome: nome
-    );
-    await _repository.atualizar(cidade);
+  // Atualiza uma cidade (recebe dados primitivos da View)
+  Future<void> editarCidade({String? id, required String nome}) async {
+    final cidade = Cidade(id: id, nome: nome);
+    if (id != null) {
+      await _repository.atualizar(id, cidade);
+    }
     await loadCidades(_ultimoFiltro);
   }
 
-  // Remove um cliente pelo código
-  Future<void> removerCidade(int codigo) async {
-    await _repository.excluir(codigo);
+  // Remove uma cidade pelo id
+  Future<void> removerCidade(String id) async {
+    await _repository.excluir(id);
     await loadCidades(_ultimoFiltro);
   }
 }

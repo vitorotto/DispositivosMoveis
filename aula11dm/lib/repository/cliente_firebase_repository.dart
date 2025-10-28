@@ -50,6 +50,15 @@ class ClienteFirebaseRepository implements IClienteRepository {
       // Mapeia os dados para uma lista de objetos Cliente.
       List<Cliente> clientes = snapshot.docs.map((doc) {
         Cliente cliente = Cliente.fromJson(doc.data() as Map<String, dynamic>);
+        // armazena o id do documento para permitir update/delete por id
+        cliente.id = doc.id;
+        // se o documento tiver campo 'codigo', mantenha-o também
+        try {
+          final data = doc.data() as Map<String, dynamic>;
+          if (data.containsKey('codigo')) {
+            cliente.codigo = data['codigo']?.toString();
+          }
+        } catch (_) {}
         return cliente;
       }).toList();
 

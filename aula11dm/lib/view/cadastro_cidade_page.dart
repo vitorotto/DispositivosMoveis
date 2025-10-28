@@ -45,14 +45,12 @@ class _CadastroCidadePageState extends State<CadastroCidadePage> {
     // Passa dados primitivos para o ViewModel (NÃO cria objetos Model aqui)
     if (widget.cidadeDTO == null) {
       // Novo cliente
-      await vm.adicionarCidade(
-        nome: _nomeController.text.trim()
-      );
+      await vm.adicionarCidade(nome: _nomeController.text.trim());
     } else {
       // Atualiza cliente existente
       await vm.editarCidade(
-        codigo: widget.cidadeDTO!.codigo!,
-        nome: _nomeController.text.trim()
+        id: widget.cidadeDTO!.id!,
+        nome: _nomeController.text.trim(),
       );
     }
 
@@ -72,11 +70,10 @@ class _CadastroCidadePageState extends State<CadastroCidadePage> {
           key: _formKey,
           child: ListView(
             children: [
-
               // Campo Nome
               TextFormField(
                 controller: _nomeController,
-                decoration: const InputDecoration(labelText: 'Nome',),
+                decoration: const InputDecoration(labelText: 'Nome'),
                 validator: (v) =>
                     (v == null || v.trim().isEmpty) ? 'Informe o nome' : null,
               ),

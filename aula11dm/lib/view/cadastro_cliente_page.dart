@@ -141,7 +141,6 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
               ),
 
               // Campo Cidade de Nascimento
-              /*
               Row(
                 children: [
                   // O TextFormField precisa de uma largura definida dentro de um Row.
@@ -190,7 +189,7 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                     child: const Icon(Icons.search),
                   ),
                 ],
-              ),*/
+              ),
               const SizedBox(height: 20),
 
               // Botão de salvar
