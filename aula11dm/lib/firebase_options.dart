@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -50,19 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAnTwoBd3bT772osoFRG7-_tKyrIUG1pB8',
-    appId: '1:1017485381289:android:a939701a0000edbcc363b8',
-    messagingSenderId: '1017485381289',
-    projectId: 'clientes-aula-11',
-    storageBucket: 'clientes-aula-11.firebasestorage.app',
+    apiKey: 'AIzaSyCCKg3_3F_huC5eUXMZx4ntiP5crYPO8_8',
+    appId: '1:335860246922:android:f23418aee5bdcc51c24073',
+    messagingSenderId: '335860246922',
+    projectId: 'aula-11-dm',
+    storageBucket: 'aula-11-dm.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDVBlfVQqg0ZY5I_FYeD92ARInn2SiGFzw',
-    appId: '1:1017485381289:ios:801f8663678ff3e4c363b8',
-    messagingSenderId: '1017485381289',
-    projectId: 'clientes-aula-11',
-    storageBucket: 'clientes-aula-11.firebasestorage.app',
+    apiKey: 'AIzaSyB089wSO0k2mEw5dLYy8Wio5ZlCVxaUChA',
+    appId: '1:335860246922:ios:369439adfb41bce8c24073',
+    messagingSenderId: '335860246922',
+    projectId: 'aula-11-dm',
+    storageBucket: 'aula-11-dm.firebasestorage.app',
     iosBundleId: 'com.example.exdb',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyBx9HszJhK8pRlmU4ktNu4AlhNBbo49zmc',
+    appId: '1:335860246922:web:767a060e88090f5fc24073',
+    messagingSenderId: '335860246922',
+    projectId: 'aula-11-dm',
+    authDomain: 'aula-11-dm.firebaseapp.com',
+    storageBucket: 'aula-11-dm.firebasestorage.app',
+    measurementId: 'G-KY7B8HPZP7',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyB089wSO0k2mEw5dLYy8Wio5ZlCVxaUChA',
+    appId: '1:335860246922:ios:369439adfb41bce8c24073',
+    messagingSenderId: '335860246922',
+    projectId: 'aula-11-dm',
+    storageBucket: 'aula-11-dm.firebasestorage.app',
+    iosBundleId: 'com.example.exdb',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyBx9HszJhK8pRlmU4ktNu4AlhNBbo49zmc',
+    appId: '1:335860246922:web:6788fd595387cf1fc24073',
+    messagingSenderId: '335860246922',
+    projectId: 'aula-11-dm',
+    authDomain: 'aula-11-dm.firebaseapp.com',
+    storageBucket: 'aula-11-dm.firebasestorage.app',
+    measurementId: 'G-XL1H87SH7Y',
+  );
+
 }

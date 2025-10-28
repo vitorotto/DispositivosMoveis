@@ -14,9 +14,8 @@ import 'db/db_helper.dart';
 import 'interface/i_cliente.dart';
 import 'interface/i_cidade.dart';
 
-// Provider global para configuração de armazenamento
 class StorageConfig extends ChangeNotifier {
-  bool _useCloud = true; // padrão: nuvem
+  bool _useCloud = true;
   bool get useCloud => _useCloud;
 
   late IClienteRepository _clienteRepository;
@@ -53,49 +52,37 @@ class StorageConfig extends ChangeNotifier {
   ICidadeRepository get cidadeRepository => _cidadeRepository;
 }
 
-// Ponto de entrada da aplicação
 Future<void> main() async {
-  // Garante que plugins nativos estejam inicializados antes de usar path_provider/sqflite
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  // (Opcional) Inicializa o banco explicitamente para evitar atrasos na primeira operação
   await DatabaseHelper.instance.database;
 
-  // Inicializa configuração global
   final storageConfig = StorageConfig();
 
-  // Executa o app dentro de um Provider que injeta o ViewModel (MVVM)
   runApp(
     MultiProvider(
       providers: [
-        // Configuração global de armazenamento
         ChangeNotifierProvider.value(value: storageConfig),
-        // Fornece uma instância de ClienteViewModel usando o repositório ativo
         ChangeNotifierProxyProvider<StorageConfig, ClienteViewModel>(
           create: (_) => ClienteViewModel(storageConfig.clienteRepository),
           update: (_, config, vm) {
             if (vm != null) {
-              // Atualiza o repositório do ViewModel existente
               vm.repository = config.clienteRepository;
               return vm;
             } else {
-              // Cria novo ViewModel se não existir
               return ClienteViewModel(config.clienteRepository);
             }
           },
         ),
-        // Fornece uma instância de CidadeViewModel usando o repositório ativo
         ChangeNotifierProxyProvider<StorageConfig, CidadeViewModel>(
           create: (_) => CidadeViewModel(storageConfig.cidadeRepository),
           update: (_, config, vm) {
             if (vm != null) {
-              // Atualiza o repositório do ViewModel existente
               vm.repository = config.cidadeRepository;
               return vm;
             } else {
-              // Cria novo ViewModel se não existir
               return CidadeViewModel(config.cidadeRepository);
             }
           },
@@ -106,7 +93,6 @@ Future<void> main() async {
   );
 }
 
-// Widget raiz da aplicação
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
