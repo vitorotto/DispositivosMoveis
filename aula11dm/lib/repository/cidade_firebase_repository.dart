@@ -56,7 +56,7 @@ class CidadeFirebaseRepository implements ICidadeRepository {
         try {
           final data = doc.data() as Map<String, dynamic>;
           if (data.containsKey('codigo')) {
-            cidade.codigo = data['codigo']?.toString() as int?;
+            cidade.codigo = data['codigo']?.toString();
           }
         } catch (_) {}
         return cidade;

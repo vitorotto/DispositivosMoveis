@@ -56,7 +56,7 @@ class ClienteDTO {
 // ViewModel que expõe dados e ações para as Views (usa ChangeNotifier para MVVM reativo)
 class ClienteViewModel extends ChangeNotifier {
   // Repositório de dados (injeção simples via construtor)
-  final IClienteRepository _repository;
+  IClienteRepository _repository;
 
   // Lista interna de clientes (Model) - privada
   List<Cliente> _clientes = [];
@@ -72,6 +72,13 @@ class ClienteViewModel extends ChangeNotifier {
   ClienteViewModel(this._repository) {
     // Ao construir o ViewModel, carregamos a lista inicial
     loadClientes();
+  }
+
+  // Setter para permitir troca dinâmica do repositório
+  set repository(IClienteRepository newRepository) {
+    _repository = newRepository;
+    // Recarrega os dados com o novo repositório
+    loadClientes(_ultimoFiltro);
   }
 
   // Carrega clientes do repositório com filtro opcional

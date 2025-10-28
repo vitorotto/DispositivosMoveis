@@ -20,8 +20,14 @@ class DatabaseHelper {
 
     // Caso contrário, inicializamos o banco
     _database = await _initDB('clientes.db');
-    _database = await _initDB('cidades.db');
     return _database!;
+  }
+
+  // Getter separado para o banco de cidades
+  Future<Database> get cidadesDatabase async {
+    // Por simplicidade, vamos usar o mesmo banco por enquanto
+    // mas na prática seria melhor ter bancos separados
+    return database;
   }
 
   // Inicializa o banco e retorna o Database
@@ -31,8 +37,13 @@ class DatabaseHelper {
     // Monta o caminho completo até o arquivo do banco
     final dbPath = join(documentsDirectory.path, fileName);
 
-    // Abre (ou cria) o banco de dados passando um onCreate que cria a tabela
-    return await openDatabase(dbPath, version: 1, onCreate: _createDB);
+    // Abre (ou cria) o banco de dados passando onCreate e onUpgrade
+    return await openDatabase(
+      dbPath,
+      version: 2, // Aumentei a versão para forçar migração
+      onCreate: _createDB,
+      onUpgrade: _upgradeDB,
+    );
   }
 
   // SQL de criação das tabelas
@@ -41,6 +52,7 @@ class DatabaseHelper {
     await db.execute('''
 CREATE TABLE clientes (
 codigo INTEGER PRIMARY KEY AUTOINCREMENT,
+id TEXT,
 cpf TEXT NOT NULL,
 nome TEXT NOT NULL,
 idade INTEGER NOT NULL,
@@ -51,12 +63,20 @@ cidadeNascimento TEXT NOT NULL
     await db.execute('''
 CREATE TABLE cidades (
 codigo INTEGER PRIMARY KEY AUTOINCREMENT,
+id TEXT,
 nome TEXT NOT NULL
 )
 ''');
   }
 
-
+  // Método para upgrade do banco de dados
+  Future _upgradeDB(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      // Adiciona coluna 'id' nas tabelas existentes
+      await db.execute('ALTER TABLE clientes ADD COLUMN id TEXT');
+      await db.execute('ALTER TABLE cidades ADD COLUMN id TEXT');
+    }
+  }
 
   // Fecha o banco (quando necessário)
   Future close() async {

@@ -48,7 +48,7 @@ class Cliente {
   // Cria um objeto Cliente a partir de um Map (resultado de uma query no SQLite)
   factory Cliente.fromMap(Map<String, dynamic> map) {
     return Cliente(
-      codigo: map['codigo'],
+      codigo: map['codigo']?.toString(),
       id: map['id'],
       cpf: map['cpf'],
       nome: map['nome'],
@@ -81,8 +81,7 @@ class Cliente {
     return {
       'codigo':
           codigo, // Mapeia o atributo 'codigo' para o campo 'codigo' no JSON.
-      'id':
-          id, // Mapeia o atributo 'id' para o campo 'id' no JSON.
+      'id': id, // Mapeia o atributo 'id' para o campo 'id' no JSON.
       'cpf': cpf, // Mapeia o atributo 'cpf' para o campo 'cpf' no JSON.
       'nome': nome, // Mapeia o atributo 'nome' para o campo 'nome' no JSON.
       'idade': idade, // Mapeia o atributo 'idade' para o campo 'idade' no JSON.

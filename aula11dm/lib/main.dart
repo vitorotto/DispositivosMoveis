@@ -75,14 +75,30 @@ Future<void> main() async {
         // Fornece uma instância de ClienteViewModel usando o repositório ativo
         ChangeNotifierProxyProvider<StorageConfig, ClienteViewModel>(
           create: (_) => ClienteViewModel(storageConfig.clienteRepository),
-          update: (_, config, vm) =>
-              vm ?? ClienteViewModel(config.clienteRepository),
+          update: (_, config, vm) {
+            if (vm != null) {
+              // Atualiza o repositório do ViewModel existente
+              vm.repository = config.clienteRepository;
+              return vm;
+            } else {
+              // Cria novo ViewModel se não existir
+              return ClienteViewModel(config.clienteRepository);
+            }
+          },
         ),
         // Fornece uma instância de CidadeViewModel usando o repositório ativo
         ChangeNotifierProxyProvider<StorageConfig, CidadeViewModel>(
           create: (_) => CidadeViewModel(storageConfig.cidadeRepository),
-          update: (_, config, vm) =>
-              vm ?? CidadeViewModel(config.cidadeRepository),
+          update: (_, config, vm) {
+            if (vm != null) {
+              // Atualiza o repositório do ViewModel existente
+              vm.repository = config.cidadeRepository;
+              return vm;
+            } else {
+              // Cria novo ViewModel se não existir
+              return CidadeViewModel(config.cidadeRepository);
+            }
+          },
         ),
       ],
       child: const MyApp(),

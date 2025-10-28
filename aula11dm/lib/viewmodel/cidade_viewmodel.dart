@@ -5,7 +5,7 @@ import '../interface/i_cidade.dart';
 // DTO (Data Transfer Object) para expor dados formatados à View
 // A View NÃO deve acessar o Model diretamente
 class CidadeDTO {
-  final int? codigo;
+  final String? codigo;
   final String? id; // firebase
   final String nome;
 
@@ -25,7 +25,7 @@ class CidadeDTO {
 // ViewModel que expõe dados e ações para as Views (usa ChangeNotifier para MVVM reativo)
 class CidadeViewModel extends ChangeNotifier {
   // Repositório de dados (injeção simples via construtor)
-  final ICidadeRepository _repository;
+  ICidadeRepository _repository;
 
   // Lista interna de clientes (Model) - privada
   List<Cidade> _cidades = [];
@@ -41,6 +41,13 @@ class CidadeViewModel extends ChangeNotifier {
   CidadeViewModel(this._repository) {
     // Ao construir o ViewModel, carregamos a lista inicial
     loadCidades();
+  }
+
+  // Setter para permitir troca dinâmica do repositório
+  set repository(ICidadeRepository newRepository) {
+    _repository = newRepository;
+    // Recarrega os dados com o novo repositório
+    loadCidades(_ultimoFiltro);
   }
 
   // Carrega clientes do repositório com filtro opcional

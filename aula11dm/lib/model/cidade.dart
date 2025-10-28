@@ -1,7 +1,7 @@
 // Classe que representa o modelo de dados 'Cidade'.
 class Cidade {
   // A propriedade 'codigo' é a chave primária (autoincrement)
-  int? codigo; // pode ser null ao criar um novo cliente
+  String? codigo; // pode ser null ao criar um novo cliente
 
   // Campo id do tipo string para Firebase
   String? id;
@@ -23,7 +23,11 @@ class Cidade {
 
   // Cria um objeto Cidade a partir de um Map (resultado de uma query no SQLite)
   factory Cidade.fromMap(Map<String, dynamic> map) {
-    return Cidade(codigo: map['codigo'], id: map['id'], nome: map['nome']);
+    return Cidade(
+      codigo: map['codigo']?.toString(),
+      id: map['id'],
+      nome: map['nome'],
+    );
   }
 
   /* -- FIREBASE -- */
