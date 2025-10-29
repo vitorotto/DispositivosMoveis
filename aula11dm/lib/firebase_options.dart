@@ -41,19 +41,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCCKg3_3F_huC5eUXMZx4ntiP5crYPO8_8',
-    appId: '1:335860246922:android:f23418aee5bdcc51c24073',
-    messagingSenderId: '335860246922',
-    projectId: 'aula-11-dm',
-    storageBucket: 'aula-11-dm.firebasestorage.app',
+    apiKey: 'AIzaSyAnTwoBd3bT772osoFRG7-_tKyrIUG1pB8',
+    appId: '1:1017485381289:android:a939701a0000edbcc363b8',
+    messagingSenderId: '1017485381289',
+    projectId: 'clientes-aula-11',
+    storageBucket: 'clientes-aula-11.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB089wSO0k2mEw5dLYy8Wio5ZlCVxaUChA',
-    appId: '1:335860246922:ios:369439adfb41bce8c24073',
-    messagingSenderId: '335860246922',
-    projectId: 'aula-11-dm',
-    storageBucket: 'aula-11-dm.firebasestorage.app',
+    apiKey: 'AIzaSyDVBlfVQqg0ZY5I_FYeD92ARInn2SiGFzw',
+    appId: '1:1017485381289:ios:801f8663678ff3e4c363b8',
+    messagingSenderId: '1017485381289',
+    projectId: 'clientes-aula-11',
+    storageBucket: 'clientes-aula-11.firebasestorage.app',
     iosBundleId: 'com.example.exdb',
   );
 

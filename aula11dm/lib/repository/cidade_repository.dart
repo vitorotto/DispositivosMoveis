@@ -1,8 +1,8 @@
-import '../model/cidade.dart';
 import '../db/db_helper.dart';
 import '../interface/i_cidade.dart';
+import '../model/cidade.dart';
 
-class CidadeRepository implements ICidadeRepository {
+class CidadeRepository implements IAuthRepository {
   final DatabaseHelper _dbHelper = DatabaseHelper.instance;
 
   @override

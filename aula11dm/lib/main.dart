@@ -1,25 +1,27 @@
 import 'package:exdb/firebase_options.dart';
 import 'package:exdb/view/lista_cliente.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'viewmodel/cliente_viewmodel.dart';
-import 'viewmodel/cidade_viewmodel.dart';
+
+import 'db/db_helper.dart';
+import 'interface/i_cidade.dart';
+import 'interface/i_cliente.dart';
 import 'repository/cidade_firebase_repository.dart';
 import 'repository/cidade_repository.dart';
 import 'repository/cliente_firebase_repository.dart';
 import 'repository/cliente_sqlite_repository.dart';
-import 'db/db_helper.dart';
-import 'interface/i_cliente.dart';
-import 'interface/i_cidade.dart';
+import 'viewmodel/cidade_viewmodel.dart';
+import 'viewmodel/cliente_viewmodel.dart';
 
 class StorageConfig extends ChangeNotifier {
   bool _useCloud = true;
   bool get useCloud => _useCloud;
 
   late IClienteRepository _clienteRepository;
-  late ICidadeRepository _cidadeRepository;
+  late IAuthRepository _authRepository;
 
   StorageConfig() {
     _loadConfig();
@@ -31,7 +33,7 @@ class StorageConfig extends ChangeNotifier {
     _clienteRepository = _useCloud
         ? ClienteFirebaseRepository()
         : ClienteSqliteRepository();
-    _cidadeRepository = _useCloud
+    _authRepository = _useCloud
         ? CidadeFirebaseRepository()
         : CidadeRepository();
     notifyListeners();
@@ -44,18 +46,19 @@ class StorageConfig extends ChangeNotifier {
     _clienteRepository = value
         ? ClienteFirebaseRepository()
         : ClienteSqliteRepository();
-    _cidadeRepository = value ? CidadeFirebaseRepository() : CidadeRepository();
+    _authRepository = value ? CidadeFirebaseRepository() : CidadeRepository();
     notifyListeners();
   }
 
   IClienteRepository get clienteRepository => _clienteRepository;
-  ICidadeRepository get cidadeRepository => _cidadeRepository;
+  IAuthRepository get cidadeRepository => _authRepository;
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 
   await DatabaseHelper.instance.database;
 

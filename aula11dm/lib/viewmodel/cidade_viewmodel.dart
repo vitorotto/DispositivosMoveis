@@ -1,5 +1,6 @@
 import 'package:exdb/model/cidade.dart';
 import 'package:flutter/material.dart';
+
 import '../interface/i_cidade.dart';
 
 class CidadeDTO {
@@ -19,7 +20,7 @@ class CidadeDTO {
 }
 
 class CidadeViewModel extends ChangeNotifier {
-  ICidadeRepository _repository;
+  IAuthRepository _repository;
 
   List<Cidade> _cidades = [];
 
@@ -32,7 +33,7 @@ class CidadeViewModel extends ChangeNotifier {
     loadCidades();
   }
 
-  set repository(ICidadeRepository newRepository) {
+  set repository(IAuthRepository newRepository) {
     _repository = newRepository;
     loadCidades(_ultimoFiltro);
   }
