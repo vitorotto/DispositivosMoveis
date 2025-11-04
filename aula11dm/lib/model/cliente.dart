@@ -72,17 +72,15 @@ class Cliente {
   // O método recebe um Map que representa o objeto JSON e retorna uma instância de Aluno.
   factory Cliente.fromJson(Map<String, dynamic> json) {
     return Cliente(
-      codigo: json['codigo'], // Acessa o valor de 'codigo' do JSON.
-      id: json['id'], // Acessa o valor de 'id' do JSON.
-      cpf: json['cpf'], // Acessa o valor de 'cpf' do JSON.
-      nome: json['nome'], // Acessa o valor de 'nome' do JSON.
-      idade: json['idade'], // Acessa o valor de 'idade' do JSON.
-      email: json['email'],
-      password: json['password'],
-      dataNascimento:
-          json['dataNascimento'], // Acessa o valor de 'dataNascimento' do JSON.
-      cidadeNascimento:
-          json['cidadeNascimento'], // Acessa o valor de 'cidadeNascimento' do JSON.
+      codigo: json['codigo']?.toString(),
+      id: json['id']?.toString(),
+      cpf: json['cpf'] ?? '',
+      nome: json['nome'] ?? '',
+      idade: json['idade'] is int ? json['idade'] : 0,
+      email: json['email'] ?? '',
+      password: json['password'] ?? '',
+      dataNascimento: json['dataNascimento'] ?? '',
+      cidadeNascimento: json['cidadeNascimento'] ?? '',
     );
   }
 
