@@ -1,5 +1,5 @@
 import 'package:exdb/firebase_options.dart';
-import 'package:exdb/view/login_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,10 +9,13 @@ import 'db/db_helper.dart';
 import 'interface/i_cidade.dart';
 import 'interface/i_cliente.dart';
 import 'presenter/login_presenter.dart';
+import 'repository/auth_repository.dart';
 import 'repository/cidade_firebase_repository.dart';
 import 'repository/cidade_repository.dart';
 import 'repository/cliente_firebase_repository.dart';
 import 'repository/cliente_sqlite_repository.dart';
+import 'view/lista_cliente.dart';
+import 'view/login_view.dart';
 import 'viewmodel/cidade_viewmodel.dart';
 import 'viewmodel/cliente_viewmodel.dart';
 
@@ -37,7 +40,7 @@ class StorageConfig extends ChangeNotifier {
     _authRepository = _useCloud
         ? CidadeFirebaseRepository()
         : CidadeRepository();
-    _loginPresenter = LoginPresenter();
+    _loginPresenter = LoginPresenter(AuthRepository());
     notifyListeners();
   }
 
@@ -49,7 +52,7 @@ class StorageConfig extends ChangeNotifier {
         ? ClienteFirebaseRepository()
         : ClienteSqliteRepository();
     _authRepository = value ? CidadeFirebaseRepository() : CidadeRepository();
-    _loginPresenter = LoginPresenter();
+    _loginPresenter = LoginPresenter(AuthRepository());
     notifyListeners();
   }
 
@@ -63,7 +66,6 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 
   await DatabaseHelper.instance.database;
 
@@ -101,6 +103,30 @@ Future<void> main() async {
   );
 }
 
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (snapshot.hasData && snapshot.data != null) {
+          return ListaClientesPage();
+        } else {
+          return LoginView(presenter: context.read<StorageConfig>().loginPresenter);
+        }
+      },
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -109,7 +135,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cadastro de Clientes (MVVM + SQLite)',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: LoginView(presenter: context.read<StorageConfig>().loginPresenter),
+      home: const AuthWrapper(),
     );
   }
 }

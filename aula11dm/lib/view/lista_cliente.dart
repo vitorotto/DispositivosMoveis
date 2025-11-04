@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../viewmodel/cliente_viewmodel.dart';
+
 import '../main.dart';
+import '../viewmodel/cliente_viewmodel.dart';
 import 'cadastro_cliente_page.dart';
+import 'login_view.dart';
 
 class ListaClientesPage extends StatefulWidget {
   const ListaClientesPage({super.key});
@@ -34,6 +36,40 @@ class _ListaClientesPageState extends State<ListaClientesPage> {
       appBar: AppBar(
         title: const Text('Clientes (MVVM + SQLite)'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Sair',
+            onPressed: () async {
+              final shouldLogout = await showDialog<bool>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Confirmar saída'),
+                  content: const Text('Tem certeza que deseja sair?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text('Cancelar'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(true),
+                      child: const Text('Sair'),
+                    ),
+                  ],
+                ),
+              );
+
+              if (shouldLogout == true) {
+                await config.loginPresenter.logout();
+
+                if (mounted) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) => LoginView(presenter: config.loginPresenter)),
+                    (route) => false,
+                  );
+                }
+              }
+            },
+          ),
           Switch(
             value: config.useCloud,
             onChanged: (value) async {
