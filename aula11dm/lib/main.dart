@@ -25,6 +25,7 @@ class StorageConfig extends ChangeNotifier {
 
   late IClienteRepository _clienteRepository;
   late IAuthRepository _authRepository;
+  late AuthRepository _userAuthRepository;
   late LoginPresenter _loginPresenter;
 
   StorageConfig() {
@@ -40,7 +41,8 @@ class StorageConfig extends ChangeNotifier {
     _authRepository = _useCloud
         ? CidadeFirebaseRepository()
         : CidadeRepository();
-    _loginPresenter = LoginPresenter(AuthRepository());
+    _userAuthRepository = AuthRepository();
+    _loginPresenter = LoginPresenter(_userAuthRepository);
     notifyListeners();
   }
 
@@ -52,12 +54,14 @@ class StorageConfig extends ChangeNotifier {
         ? ClienteFirebaseRepository()
         : ClienteSqliteRepository();
     _authRepository = value ? CidadeFirebaseRepository() : CidadeRepository();
-    _loginPresenter = LoginPresenter(AuthRepository());
+    _userAuthRepository = AuthRepository();
+    _loginPresenter = LoginPresenter(_userAuthRepository);
     notifyListeners();
   }
 
   IClienteRepository get clienteRepository => _clienteRepository;
   IAuthRepository get cidadeRepository => _authRepository;
+  AuthRepository get userAuthRepository => _userAuthRepository;
   LoginPresenter get loginPresenter => _loginPresenter;
 }
 
@@ -76,13 +80,13 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider.value(value: storageConfig),
         ChangeNotifierProxyProvider<StorageConfig, ClienteViewModel>(
-          create: (_) => ClienteViewModel(storageConfig.clienteRepository),
+          create: (_) => ClienteViewModel(storageConfig.clienteRepository, storageConfig.userAuthRepository),
           update: (_, config, vm) {
             if (vm != null) {
               vm.repository = config.clienteRepository;
               return vm;
             } else {
-              return ClienteViewModel(config.clienteRepository);
+              return ClienteViewModel(config.clienteRepository, config.userAuthRepository);
             }
           },
         ),

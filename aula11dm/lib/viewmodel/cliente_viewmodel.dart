@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../interface/i_cliente.dart';
 import '../model/cliente.dart';
+import '../repository/auth_repository.dart';
 
 class ClienteDTO {
   final String? codigo;
@@ -60,6 +61,7 @@ class ClienteDTO {
 
 class ClienteViewModel extends ChangeNotifier {
   IClienteRepository _repository;
+  AuthRepository? _authRepository;
 
   List<Cliente> _clientes = [];
 
@@ -68,7 +70,7 @@ class ClienteViewModel extends ChangeNotifier {
 
   String _ultimoFiltro = '';
 
-  ClienteViewModel(this._repository) {
+  ClienteViewModel(this._repository, [this._authRepository]) {
     loadClientes();
   }
 
@@ -101,6 +103,16 @@ class ClienteViewModel extends ChangeNotifier {
       dataNascimento: dataNascimento,
       cidadeNascimento: cidadeNascimento,
     );
+
+    if (_authRepository != null) {
+      try {
+        await _authRepository!.registerWithEmailAndPassword(email, password);
+        print('Usuário criado no Firebase Auth: $email');
+      } catch (e) {
+        print('Erro ao criar usuário no Firebase Auth: $e');
+      }
+    }
+
     await _repository.inserir(cliente);
     await loadClientes(_ultimoFiltro);
   }
