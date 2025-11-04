@@ -1,22 +1,22 @@
 import 'package:exdb/interface/i_cliente.dart';
 
-import '../model/cliente.dart';
 import '../db/db_helper.dart';
+import '../model/cliente.dart';
 
 class ClienteSqliteRepository implements IClienteRepository {
   final DatabaseHelper _dbHelper = DatabaseHelper.instance;
 
   @override
-  Future<int> inserir(Cliente cliente) async {
+  Future<void> inserir(Cliente cliente) async {
     final db = await _dbHelper.database;
-    return await db.insert('clientes', cliente.toMap());
+    await db.insert('clientes', cliente.toMap());
   }
 
   @override
-  Future<int> atualizar(String id, Cliente cliente) async {
+  Future<void> atualizar(String id, Cliente cliente) async {
     final db = await _dbHelper.database;
     String codigo = id;
-    return await db.update(
+    await db.update(
       'clientes',
       cliente.toMap(),
       where: 'codigo = ?',
@@ -25,10 +25,10 @@ class ClienteSqliteRepository implements IClienteRepository {
   }
 
   @override
-  Future<int> excluir(String id) async {
+  Future<void> excluir(String id) async {
     final db = await _dbHelper.database;
     String codigo = id;
-    return await db.delete(
+    await db.delete(
       'clientes',
       where: 'codigo = ?',
       whereArgs: [codigo],

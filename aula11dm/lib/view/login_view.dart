@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../presenter/login_presenter.dart';
-import 'aluno_page.dart';
+import 'lista_cliente.dart';
 
 class LoginView extends StatelessWidget {
   final LoginPresenter presenter;
@@ -48,7 +49,7 @@ class LoginView extends StatelessWidget {
                     );
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AlunoPage()),
+                      MaterialPageRoute(builder: (context) => ListaClientesPage()),
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(

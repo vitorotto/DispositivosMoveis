@@ -1,6 +1,7 @@
 import 'package:exdb/view/lista_cidade.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../viewmodel/cliente_viewmodel.dart';
 
 class CadastroClientePage extends StatefulWidget {
@@ -17,6 +18,8 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
   late TextEditingController _cpfController;
   late TextEditingController _nomeController;
   late TextEditingController _idadeController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
   late TextEditingController _dataNascimentoController;
   late TextEditingController _cidadeController;
 
@@ -29,6 +32,12 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
     );
     _idadeController = TextEditingController(
       text: widget.clienteDTO?.idade ?? '',
+    );
+    _emailController = TextEditingController(
+      text: widget.clienteDTO?.email ?? '',
+    );
+    _passwordController = TextEditingController(
+      text: widget.clienteDTO?.password ?? '',
     );
     _dataNascimentoController = TextEditingController(
       text: widget.clienteDTO?.dataNascimento ?? '',
@@ -43,6 +52,8 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
     _cpfController.dispose();
     _nomeController.dispose();
     _idadeController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     _dataNascimentoController.dispose();
     _cidadeController.dispose();
     super.dispose();
@@ -58,6 +69,8 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
         cpf: _cpfController.text.trim(),
         nome: _nomeController.text.trim(),
         idade: _idadeController.text.trim(),
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
         dataNascimento: _dataNascimentoController.text.trim(),
         cidadeNascimento: _cidadeController.text.trim(),
       );
@@ -68,6 +81,8 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
         cpf: _cpfController.text.trim(),
         nome: _nomeController.text.trim(),
         idade: _idadeController.text.trim(),
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
         dataNascimento: _dataNascimentoController.text.trim(),
         cidadeNascimento: _cidadeController.text.trim(),
       );
@@ -110,6 +125,22 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                 keyboardType: TextInputType.number,
                 validator: (v) =>
                     (v == null || v.trim().isEmpty) ? 'Informe a idade' : null,
+              ),
+
+              TextFormField(
+                controller: _emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+                keyboardType: TextInputType.emailAddress,
+                validator: (v) =>
+                    (v == null || v.trim().isEmpty) ? 'Informe o email' : null,
+              ),
+
+              TextFormField(
+                controller: _passwordController,
+                decoration: const InputDecoration(labelText: 'Senha'),
+                obscureText: true,
+                validator: (v) =>
+                    (v == null || v.trim().isEmpty) ? 'Informe a senha' : null,
               ),
 
               TextFormField(

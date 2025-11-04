@@ -1,6 +1,5 @@
 import 'package:exdb/firebase_options.dart';
-import 'package:exdb/view/lista_cliente.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:exdb/view/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'db/db_helper.dart';
 import 'interface/i_cidade.dart';
 import 'interface/i_cliente.dart';
+import 'presenter/login_presenter.dart';
 import 'repository/cidade_firebase_repository.dart';
 import 'repository/cidade_repository.dart';
 import 'repository/cliente_firebase_repository.dart';
@@ -22,6 +22,7 @@ class StorageConfig extends ChangeNotifier {
 
   late IClienteRepository _clienteRepository;
   late IAuthRepository _authRepository;
+  late LoginPresenter _loginPresenter;
 
   StorageConfig() {
     _loadConfig();
@@ -36,6 +37,7 @@ class StorageConfig extends ChangeNotifier {
     _authRepository = _useCloud
         ? CidadeFirebaseRepository()
         : CidadeRepository();
+    _loginPresenter = LoginPresenter();
     notifyListeners();
   }
 
@@ -47,18 +49,21 @@ class StorageConfig extends ChangeNotifier {
         ? ClienteFirebaseRepository()
         : ClienteSqliteRepository();
     _authRepository = value ? CidadeFirebaseRepository() : CidadeRepository();
+    _loginPresenter = LoginPresenter();
     notifyListeners();
   }
 
   IClienteRepository get clienteRepository => _clienteRepository;
   IAuthRepository get cidadeRepository => _authRepository;
+  LoginPresenter get loginPresenter => _loginPresenter;
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+
+  // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 
   await DatabaseHelper.instance.database;
 
@@ -104,7 +109,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cadastro de Clientes (MVVM + SQLite)',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const ListaClientesPage(),
+      home: LoginView(presenter: context.read<StorageConfig>().loginPresenter),
     );
   }
 }
