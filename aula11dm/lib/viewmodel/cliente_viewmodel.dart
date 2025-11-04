@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../model/cliente.dart';
+
 import '../interface/i_cliente.dart';
+import '../model/cliente.dart';
 
 class ClienteDTO {
   final String? codigo;
@@ -8,6 +9,8 @@ class ClienteDTO {
   final String cpf;
   final String nome;
   final String idade;
+  final String email;
+  final String password;
   final String dataNascimento;
   final String cidadeNascimento;
   final String subtitulo;
@@ -18,6 +21,8 @@ class ClienteDTO {
     required this.cpf,
     required this.nome,
     required this.idade,
+    required this.email,
+    required this.password,
     required this.dataNascimento,
     required this.cidadeNascimento,
     required this.subtitulo,
@@ -30,6 +35,8 @@ class ClienteDTO {
       cpf: cliente.cpf,
       nome: cliente.nome,
       idade: cliente.idade.toString(),
+      email: cliente.email,
+      password: cliente.password,
       dataNascimento: cliente.dataNascimento,
       cidadeNascimento: cliente.cidadeNascimento,
       subtitulo: 'CPF: ${cliente.cpf} · ${cliente.cidadeNascimento}',
@@ -43,6 +50,8 @@ class ClienteDTO {
       cpf: cpf,
       nome: nome,
       idade: int.tryParse(idade) ?? 0,
+      email: email,
+      password: password,
       dataNascimento: dataNascimento,
       cidadeNascimento: cidadeNascimento,
     );
@@ -78,6 +87,8 @@ class ClienteViewModel extends ChangeNotifier {
     required String cpf,
     required String nome,
     required String idade,
+    required String email,
+    required String password,
     required String dataNascimento,
     required String cidadeNascimento,
   }) async {
@@ -85,6 +96,8 @@ class ClienteViewModel extends ChangeNotifier {
       cpf: cpf,
       nome: nome,
       idade: int.tryParse(idade) ?? 0,
+      email: email,
+      password: password,
       dataNascimento: dataNascimento,
       cidadeNascimento: cidadeNascimento,
     );
@@ -98,6 +111,8 @@ class ClienteViewModel extends ChangeNotifier {
     required String cpf,
     required String nome,
     required String idade,
+    required String email,
+    required String password,
     required String dataNascimento,
     required String cidadeNascimento,
   }) async {
@@ -107,6 +122,8 @@ class ClienteViewModel extends ChangeNotifier {
       cpf: cpf,
       nome: nome,
       idade: int.tryParse(idade) ?? 0,
+      email: email,
+      password: password,
       dataNascimento: dataNascimento,
       cidadeNascimento: cidadeNascimento,
     );
