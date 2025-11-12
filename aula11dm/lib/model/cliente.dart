@@ -15,6 +15,9 @@ class Cliente {
   // Idade do cliente (inteiro)
   int idade;
 
+  String email;
+  String password;
+
   // Data de nascimento em formato String (poderia ser DateTime, aqui usamos String para simplicidade)
   String dataNascimento;
 
@@ -28,6 +31,8 @@ class Cliente {
     required this.cpf,
     required this.nome,
     required this.idade,
+    required this.email,
+    required this.password,
     required this.dataNascimento,
     required this.cidadeNascimento,
   });
@@ -40,6 +45,8 @@ class Cliente {
       'cpf': cpf,
       'nome': nome,
       'idade': idade,
+      'email': email,
+      'password': password,
       'dataNascimento': dataNascimento,
       'cidadeNascimento': cidadeNascimento,
     };
@@ -53,6 +60,8 @@ class Cliente {
       cpf: map['cpf'],
       nome: map['nome'],
       idade: map['idade'],
+      email: map['email'],
+      password: map['password'],
       dataNascimento: map['dataNascimento'],
       cidadeNascimento: map['cidadeNascimento'],
     );
@@ -63,15 +72,15 @@ class Cliente {
   // O método recebe um Map que representa o objeto JSON e retorna uma instância de Aluno.
   factory Cliente.fromJson(Map<String, dynamic> json) {
     return Cliente(
-      codigo: json['codigo'], // Acessa o valor de 'codigo' do JSON.
-      id: json['id'], // Acessa o valor de 'id' do JSON.
-      cpf: json['cpf'], // Acessa o valor de 'cpf' do JSON.
-      nome: json['nome'], // Acessa o valor de 'nome' do JSON.
-      idade: json['idade'], // Acessa o valor de 'idade' do JSON.
-      dataNascimento:
-          json['dataNascimento'], // Acessa o valor de 'dataNascimento' do JSON.
-      cidadeNascimento:
-          json['cidadeNascimento'], // Acessa o valor de 'cidadeNascimento' do JSON.
+      codigo: json['codigo']?.toString(),
+      id: json['id']?.toString(),
+      cpf: json['cpf'] ?? '',
+      nome: json['nome'] ?? '',
+      idade: json['idade'] is int ? json['idade'] : 0,
+      email: json['email'] ?? '',
+      password: json['password'] ?? '',
+      dataNascimento: json['dataNascimento'] ?? '',
+      cidadeNascimento: json['cidadeNascimento'] ?? '',
     );
   }
 
@@ -85,6 +94,8 @@ class Cliente {
       'cpf': cpf, // Mapeia o atributo 'cpf' para o campo 'cpf' no JSON.
       'nome': nome, // Mapeia o atributo 'nome' para o campo 'nome' no JSON.
       'idade': idade, // Mapeia o atributo 'idade' para o campo 'idade' no JSON.
+      'email': email,
+      'password': password,
       'dataNascimento':
           dataNascimento, // Mapeia o atributo 'dataNascimento' para o campo 'dataNascimento' no JSON.
       'cidadeNascimento':
