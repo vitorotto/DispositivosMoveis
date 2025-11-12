@@ -13,6 +13,8 @@ import 'repository/cliente_sqlite_repository.dart';
 import 'db/db_helper.dart';
 import 'interface/i_cliente.dart';
 import 'interface/i_cidade.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'view/login_page.dart';
 
 // Provider global para configuração de armazenamento
 class StorageConfig extends ChangeNotifier {
@@ -115,7 +117,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cadastro de Clientes (MVVM + SQLite)',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const ListaClientesPage(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(body: Center(child: CircularProgressIndicator()));
+          }
+          if (snapshot.hasData) {
+            return const ListaClientesPage();
+          }
+          return const LoginPage();
+        },
+      ),
     );
   }
 }

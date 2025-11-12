@@ -6,35 +6,80 @@ class LoginPresenter {
   // Instância do FirebaseAuth para autenticação
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Instância do GoogleSignIn para iniciar o processo de login com Google
-  final GoogleSignIn _googleSignIn = new GoogleSignIn();
+  // Instância do GoogleSignIn — usa construtor nomeado padrão (compatível com versões recentes)
+  final GoogleSignIn _googleSignIn = GoogleSignIn.standard();
+
+  // Retorna o usuário atual (null se não autenticado)
+  User? get currentUser => _auth.currentUser;
 
   // Método para autenticação com o Google
   Future<bool> signInWithGoogle() async {
     try {
-      // Inicia o fluxo de login com Google
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) return false; // usuário cancelou
 
-      // Caso o usuário cancele o login, retorna falso
-      if (googleUser == null) return false;
-
-      // Obtém as credenciais de autenticação do Google
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
-      // Cria uma credencial do Firebase a partir das credenciais do Google
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      // Usa as credenciais para fazer login no Firebase
       await _auth.signInWithCredential(credential);
-      return true; // Login bem-sucedido, retorna verdadeiro
+      return true;
     } catch (e) {
-      // Em caso de erro, exibe uma mensagem no console e retorna falso
-      print("Error in Google Sign-In: $e");
+      print('Error in Google Sign-In: $e');
       return false;
+    }
+  }
+
+  // Login com email e senha
+  Future<UserCredential?> signInWithEmailPassword(
+      {required String email, required String password}) async {
+    try {
+      final result = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return result;
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException (signIn): ${e.code} - ${e.message}');
+      rethrow;
+    } catch (e) {
+      print('Error signing in with email: $e');
+      rethrow;
+    }
+  }
+
+  // Registro com email e senha
+  Future<UserCredential?> registerWithEmailPassword(
+      {required String email, required String password}) async {
+    try {
+      final result = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return result;
+    } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException (register): ${e.code} - ${e.message}');
+      rethrow;
+    } catch (e) {
+      print('Error registering with email: $e');
+      rethrow;
+    }
+  }
+
+  // Desloga o usuário (do Firebase e do Google se aplicável)
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      try {
+        // Tenta também desconectar o GoogleSignIn (se o usuário estiver conectado via Google)
+        await _googleSignIn.signOut();
+      } catch (_) {}
+    } catch (e) {
+      print('Error signing out: $e');
     }
   }
 }
