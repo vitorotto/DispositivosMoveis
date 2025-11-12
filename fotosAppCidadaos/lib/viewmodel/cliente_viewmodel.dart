@@ -12,6 +12,7 @@ class ClienteDTO {
   final String idade;
   final String dataNascimento;
   final String cidadeNascimento;
+  final String? fotoBase64;
   final String subtitulo; // Dado formatado para exibição
 
   ClienteDTO({
@@ -22,6 +23,7 @@ class ClienteDTO {
     required this.idade,
     required this.dataNascimento,
     required this.cidadeNascimento,
+    this.fotoBase64,
     required this.subtitulo,
   });
 
@@ -35,6 +37,7 @@ class ClienteDTO {
       idade: cliente.idade.toString(),
       dataNascimento: cliente.dataNascimento,
       cidadeNascimento: cliente.cidadeNascimento,
+      fotoBase64: cliente.fotoBase64,
       subtitulo: 'CPF: ${cliente.cpf} · ${cliente.cidadeNascimento}',
     );
   }
@@ -98,6 +101,7 @@ class ClienteViewModel extends ChangeNotifier {
     required String idade,
     required String dataNascimento,
     required String cidadeNascimento,
+    String? fotoBase64,
   }) async {
     final cliente = Cliente(
       cpf: cpf,
@@ -105,6 +109,7 @@ class ClienteViewModel extends ChangeNotifier {
       idade: int.tryParse(idade) ?? 0,
       dataNascimento: dataNascimento,
       cidadeNascimento: cidadeNascimento,
+      fotoBase64: fotoBase64,
     );
     await _repository.inserir(cliente);
     // Recarrega a lista com o último filtro aplicado
@@ -120,6 +125,7 @@ class ClienteViewModel extends ChangeNotifier {
     required String idade,
     required String dataNascimento,
     required String cidadeNascimento,
+    String? fotoBase64,
   }) async {
     final cliente = Cliente(
       codigo: codigo,
@@ -129,6 +135,7 @@ class ClienteViewModel extends ChangeNotifier {
       idade: int.tryParse(idade) ?? 0,
       dataNascimento: dataNascimento,
       cidadeNascimento: cidadeNascimento,
+      fotoBase64: fotoBase64,
     );
     if (id != null) {
       await _repository.atualizar(id, cliente);

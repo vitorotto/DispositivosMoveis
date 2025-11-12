@@ -63,6 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1017485381289',
     projectId: 'clientes-aula-11',
     storageBucket: 'clientes-aula-11.firebasestorage.app',
+    androidClientId: '1017485381289-8ondkes11pci6ukeajkoita162i6uooe.apps.googleusercontent.com',
+    iosClientId: '1017485381289-7e51ieomk44480b7j2ekogbaempnao10.apps.googleusercontent.com',
     iosBundleId: 'com.example.exdb',
   );
+
 }

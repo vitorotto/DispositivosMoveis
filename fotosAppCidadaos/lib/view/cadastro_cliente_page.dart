@@ -1,4 +1,6 @@
 import 'package:exdb/view/lista_cidade.dart';
+import 'package:exdb/view/camera_view.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodel/cliente_viewmodel.dart';
@@ -24,6 +26,8 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
   late TextEditingController _idadeController;
   late TextEditingController _dataNascimentoController;
   late TextEditingController _cidadeController;
+  // Foto em base64 anexada ao cliente (opcional)
+  String? _fotoBase64;
 
   @override
   void initState() {
@@ -42,6 +46,7 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
     _cidadeController = TextEditingController(
       text: widget.clienteDTO?.cidadeNascimento ?? '',
     );
+    _fotoBase64 = widget.clienteDTO?.fotoBase64;
   }
 
   @override
@@ -72,6 +77,7 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
         idade: _idadeController.text.trim(),
         dataNascimento: _dataNascimentoController.text.trim(),
         cidadeNascimento: _cidadeController.text.trim(),
+        fotoBase64: _fotoBase64,
       );
     } else {
       // Atualiza cliente existente
@@ -83,6 +89,7 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
         idade: _idadeController.text.trim(),
         dataNascimento: _dataNascimentoController.text.trim(),
         cidadeNascimento: _cidadeController.text.trim(),
+        fotoBase64: _fotoBase64,
       );
     }
 
@@ -191,6 +198,57 @@ class _CadastroClientePageState extends State<CadastroClientePage> {
                 ],
               ),
               const SizedBox(height: 20),
+
+              // Seção de foto: preview + botão para anexar via câmera
+              Row(
+                children: [
+                  // Preview da imagem (se houver)
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: _fotoBase64 == null
+                        ? const Center(child: Text('Sem foto'))
+                        : Image.memory(
+                            // Decodifica base64 para exibir
+                            base64Decode(_fotoBase64!),
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                  const SizedBox(width: 8),
+                  Column(
+                    children: [
+                      ElevatedButton.icon(
+                        icon: const Icon(Icons.camera_alt),
+                        label: const Text('Anexar foto'),
+                        onPressed: () async {
+                          // Abre a câmera e espera receber a foto em base64
+                          final result = await Navigator.push<String?>(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const CameraView(),
+                            ),
+                          );
+                          if (result != null) {
+                            setState(() {
+                              _fotoBase64 = result;
+                            });
+                          }
+                        },
+                      ),
+                      if (_fotoBase64 != null)
+                        TextButton(
+                          onPressed: () {
+                            setState(() => _fotoBase64 = null);
+                          },
+                          child: const Text('Remover foto'),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
 
               // Botão de salvar
               ElevatedButton(onPressed: _salvar, child: const Text('Salvar')),

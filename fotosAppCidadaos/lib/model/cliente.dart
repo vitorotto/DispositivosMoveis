@@ -20,6 +20,8 @@ class Cliente {
 
   // Cidade de nascimento
   String cidadeNascimento;
+  // Foto do cliente em base64 (opcional)
+  String? fotoBase64;
 
   // Construtor com campos obrigatórios (exceto codigo)
   Cliente({
@@ -30,6 +32,7 @@ class Cliente {
     required this.idade,
     required this.dataNascimento,
     required this.cidadeNascimento,
+    this.fotoBase64,
   });
 
   // Converte o objeto Cliente em Map<String, dynamic> para inserir/atualizar no SQLite
@@ -42,6 +45,7 @@ class Cliente {
       'idade': idade,
       'dataNascimento': dataNascimento,
       'cidadeNascimento': cidadeNascimento,
+      'fotoBase64': fotoBase64,
     };
   }
 
@@ -55,6 +59,7 @@ class Cliente {
       idade: map['idade'],
       dataNascimento: map['dataNascimento'],
       cidadeNascimento: map['cidadeNascimento'],
+      fotoBase64: map['fotoBase64'],
     );
   }
 
@@ -72,6 +77,7 @@ class Cliente {
           json['dataNascimento'], // Acessa o valor de 'dataNascimento' do JSON.
       cidadeNascimento:
           json['cidadeNascimento'], // Acessa o valor de 'cidadeNascimento' do JSON.
+      fotoBase64: json['fotoBase64'],
     );
   }
 
@@ -89,6 +95,7 @@ class Cliente {
           dataNascimento, // Mapeia o atributo 'dataNascimento' para o campo 'dataNascimento' no JSON.
       'cidadeNascimento':
           cidadeNascimento, // Mapeia o atributo 'cidadeNascimento' para o campo 'cidadeNascimento' no JSON.
+      'fotoBase64': fotoBase64,
     };
   }
 }

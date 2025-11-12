@@ -40,7 +40,7 @@ class DatabaseHelper {
     // Abre (ou cria) o banco de dados passando onCreate e onUpgrade
     return await openDatabase(
       dbPath,
-      version: 2, // Aumentei a versão para forçar migração
+      version: 3, // Nova versão: adiciona coluna fotoBase64
       onCreate: _createDB,
       onUpgrade: _upgradeDB,
     );
@@ -57,7 +57,8 @@ cpf TEXT NOT NULL,
 nome TEXT NOT NULL,
 idade INTEGER NOT NULL,
 dataNascimento TEXT NOT NULL,
-cidadeNascimento TEXT NOT NULL
+cidadeNascimento TEXT NOT NULL,
+fotoBase64 TEXT
 )
 ''');
     await db.execute('''
@@ -75,6 +76,14 @@ nome TEXT NOT NULL
       // Adiciona coluna 'id' nas tabelas existentes
       await db.execute('ALTER TABLE clientes ADD COLUMN id TEXT');
       await db.execute('ALTER TABLE cidades ADD COLUMN id TEXT');
+    }
+    // Versão 3: adiciona coluna para armazenar imagem em base64
+    if (oldVersion < 3) {
+      try {
+        await db.execute('ALTER TABLE clientes ADD COLUMN fotoBase64 TEXT');
+      } catch (_) {
+        // Ignora se já existir ou se houver alguma limitação
+      }
     }
   }
 

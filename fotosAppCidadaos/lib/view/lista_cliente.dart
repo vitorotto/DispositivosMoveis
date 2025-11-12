@@ -1,3 +1,5 @@
+import 'package:exdb/view/camera_view.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodel/cliente_viewmodel.dart';
@@ -38,7 +40,7 @@ class _ListaClientesPageState extends State<ListaClientesPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Clientes (MVVM + SQLite)'),
+        title: const Text('Clientes'),
         actions: [
           // Switch global para escolher armazenamento
           Switch(
@@ -48,6 +50,16 @@ class _ListaClientesPageState extends State<ListaClientesPage> {
               // Recarrega a lista após mudança
               await vm.loadClientes(_searchController.text);
             },
+          ),
+
+          IconButton(
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => CameraView()),
+              );
+            },
+            icon: Icon(Icons.camera),
           ),
           // Botão para criar novo cliente
           IconButton(
@@ -92,6 +104,13 @@ class _ListaClientesPageState extends State<ListaClientesPage> {
                       // Usa DTO ao invés de Model
                       final ClienteDTO dto = vm.clientes[index];
                       return ListTile(
+                        leading: dto.fotoBase64 == null
+                            ? null
+                            : CircleAvatar(
+                                backgroundImage: MemoryImage(
+                                  base64Decode(dto.fotoBase64!),
+                                ),
+                              ),
                         title: Text(dto.nome),
                         subtitle: Text(
                           dto.subtitulo,
