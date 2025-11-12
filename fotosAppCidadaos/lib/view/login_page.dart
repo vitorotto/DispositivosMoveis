@@ -146,10 +146,11 @@ class _LoginPageState extends State<LoginPage> {
                   icon: const Icon(Icons.login),
                   label: const Text('Entrar com Google'),
                 ),
-                if (_loading) const Padding(
-                  padding: EdgeInsets.only(top:16.0),
-                  child: CircularProgressIndicator(),
-                ),
+                if (_loading)
+                  const Padding(
+                    padding: EdgeInsets.only(top: 16.0),
+                    child: CircularProgressIndicator(),
+                  ),
               ],
             ),
           ),

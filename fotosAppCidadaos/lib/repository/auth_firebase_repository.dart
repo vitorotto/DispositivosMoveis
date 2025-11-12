@@ -35,8 +35,10 @@ class LoginPresenter {
   }
 
   // Login com email e senha
-  Future<UserCredential?> signInWithEmailPassword(
-      {required String email, required String password}) async {
+  Future<UserCredential?> signInWithEmailPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
       final result = await _auth.signInWithEmailAndPassword(
         email: email,
@@ -53,8 +55,10 @@ class LoginPresenter {
   }
 
   // Registro com email e senha
-  Future<UserCredential?> registerWithEmailPassword(
-      {required String email, required String password}) async {
+  Future<UserCredential?> registerWithEmailPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
       final result = await _auth.createUserWithEmailAndPassword(
         email: email,
